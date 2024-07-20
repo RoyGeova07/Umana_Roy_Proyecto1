@@ -42,6 +42,31 @@ public class Umana_Roy_Proyecto1_Q3 {
         double InventarioAvena = 0;
         double InventarioTrigo = 0;
         double InventarioMaiz = 0;
+        
+        
+        int TotalVentasDia = 0;
+        int TotalComprasDia = 0;
+        double TotalMontoVentas = 0;
+        double TotalMontoCompras = 0;
+        double MayorGananciaVenta = 0;
+        double MayorGastoCompra = 0;
+        String ProductoMayorGanancia = "";
+        String ProductoMayorGasto = "";
+        
+        // para el ranking
+        double CantidadVendidoAzucar = 0;
+        double CantidadVendidoAvena = 0;
+        double CantidadVendidoTrigo = 0;
+        double CantidadVendidoMaiz = 0;
+        
+        String PrimerProducto = "";
+        double PrimerCantidad = 0;
+        String SegundoProducto = "";
+        double SegundaCantidad = 0;
+        String TercerProducto = "";
+        double TercerCantidad = 0;
+        String CuartoProducto = "";
+        double CuartaCantidad = 0;
 
         // uso del while con 6 opciones
         while (opcionMenu != 6) {
@@ -225,6 +250,16 @@ public class Umana_Roy_Proyecto1_Q3 {
 
                         // se suma lo que tenemos en caja por vender.
                         caja += TotalProductoVenta;
+                        TotalVentasDia++; // 
+                        TotalMontoVentas += TotalProductoVenta;
+                        
+                        
+                        // COMENTARIOS.............
+                        if(TotalProductoVenta > MayorGananciaVenta){
+                            MayorGananciaVenta = TotalProductoVenta;
+                            ProductoMayorGanancia = NombreProductoVenta;
+                        }
+                        
 
                     } else {
                         System.out.println("El proveedor no puede comprar dicho producto.");
@@ -367,6 +402,14 @@ public class Umana_Roy_Proyecto1_Q3 {
 
                             // Esta compra disminuirá el efectivo en caja.
                             caja -= TotalProductoCompra;
+                            TotalComprasDia++;
+                            TotalMontoCompras += TotalProductoCompra;
+                            
+                            // COMENTAR...
+                            if(TotalProductoCompra > MayorGastoCompra){
+                                MayorGastoCompra = TotalProductoCompra;
+                                ProductoMayorGasto = NombreProductoCompra;  
+                            }
 
                             // despues de comprar kg los kg se incrementan y ya no estan en 0, con estas condiciones hacen que se actualizen.
                             if (CodigoProductoCompra == 1) {
@@ -393,8 +436,92 @@ public class Umana_Roy_Proyecto1_Q3 {
                 }
 
 // ---------------4. ENTRAR A REPORTES-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                
-            } else if (opcionMenu == 4) {
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+            } else if (opcionMenu == 4) {
+                
+                
+                
+                // aqui con condiciones determinaremos el primer lugar
+                if(CantidadVendidoAzucar >= CantidadVendidoAvena && CantidadVendidoAzucar >= CantidadVendidoTrigo && CantidadVendidoAzucar >= CantidadVendidoMaiz){
+                    PrimerProducto = "Azucar";
+                    PrimerCantidad = CantidadVendidoAzucar;
+                } else if(CantidadVendidoAvena >= CantidadVendidoAzucar && CantidadVendidoAvena >= CantidadVendidoTrigo && CantidadVendidoAvena >= CantidadVendidoMaiz){
+                    PrimerProducto = "Avena";
+                    PrimerCantidad = CantidadVendidoAvena;
+                } else if(CantidadVendidoTrigo >= CantidadVendidoAzucar && CantidadVendidoTrigo >= CantidadVendidoAvena && CantidadVendidoTrigo >=  CantidadVendidoMaiz){
+                    PrimerProducto = "Trigo";
+                    PrimerCantidad = CantidadVendidoTrigo;
+                } else{
+                    PrimerProducto = "Maiz";
+                    PrimerCantidad = CantidadVendidoMaiz;
+                }
+                
+                // aqui se determina el segundo lugar
+                if(CantidadVendidoAzucar >= CantidadVendidoAvena && CantidadVendidoAzucar >= CantidadVendidoTrigo && CantidadVendidoAzucar >= CantidadVendidoMaiz && !PrimerProducto.equals("Azucar")){
+                    SegundoProducto = "Azucar";
+                    SegundaCantidad = CantidadVendidoAzucar;
+                } else if(CantidadVendidoAvena >= CantidadVendidoAzucar && CantidadVendidoAvena >= CantidadVendidoTrigo && CantidadVendidoAvena >= CantidadVendidoMaiz && !PrimerProducto.equals("Avena")){
+                    SegundoProducto = "Avena";
+                    SegundaCantidad = CantidadVendidoAvena;
+                } else if(CantidadVendidoTrigo >= CantidadVendidoAzucar && CantidadVendidoTrigo >= CantidadVendidoAvena && CantidadVendidoTrigo >=  CantidadVendidoMaiz && !PrimerProducto.equals("Trigo")){
+                    SegundoProducto = "Trigo";
+                    SegundaCantidad = CantidadVendidoTrigo;
+                } else if(!PrimerProducto.equals("Maiz")) {
+                    SegundoProducto = "Maiz";
+                    SegundaCantidad = CantidadVendidoMaiz;
+                }
+                
+                // aqui se determina el tercer lugar 
+                if(CantidadVendidoAzucar >= CantidadVendidoAvena && CantidadVendidoAzucar >= CantidadVendidoTrigo && CantidadVendidoAzucar >= CantidadVendidoMaiz && !PrimerProducto.equals("Azucar") && !SegundoProducto.equals("Azucar")){
+                    TercerProducto = "Azucar";
+                    TercerCantidad = CantidadVendidoAzucar;
+                } else if(CantidadVendidoAvena >= CantidadVendidoAzucar && CantidadVendidoAvena >= CantidadVendidoTrigo && CantidadVendidoAvena >= CantidadVendidoMaiz && !PrimerProducto.equals("Avena") && !SegundoProducto.equals("Avena")){
+                    TercerProducto = "Avena";
+                    TercerCantidad = CantidadVendidoAvena;
+                } else if(CantidadVendidoTrigo >= CantidadVendidoAzucar && CantidadVendidoTrigo >= CantidadVendidoAvena && CantidadVendidoTrigo >=  CantidadVendidoMaiz && !PrimerProducto.equals("Trigo") && !SegundoProducto.equals("Trigo")){
+                    TercerProducto = "Trigo";
+                    TercerCantidad = CantidadVendidoTrigo;
+                } else if(!PrimerProducto.equals("Maiz") && !SegundoProducto.equals("Maiz")) {
+                    TercerProducto = "Maiz";
+                    TercerCantidad = CantidadVendidoMaiz;
+                }
+                
+                // aqui se determina el cuarto lugar.
+                if(!PrimerProducto.equals("Azucar") && !SegundoProducto.equals("Azucar") && !TercerProducto.equals("Azucar")){
+                    CuartoProducto = "Azucar";
+                    CuartaCantidad = CantidadVendidoAzucar;
+                } else if(!PrimerProducto.equals("Avena") && !SegundoProducto.equals("Avena") && !TercerProducto.equals("Avena")){
+                    CuartoProducto = "Avena";
+                    CuartaCantidad = CantidadVendidoAvena;
+                } else if(!PrimerProducto.equals("Trigo") && !SegundoProducto.equals("Trigo") && !TercerProducto.equals("Trigo")){
+                    CuartoProducto = "Trigo";
+                    CuartaCantidad = CantidadVendidoTrigo;
+                } else {
+                    CuartoProducto = "Maiz";
+                    CuartaCantidad = CantidadVendidoMaiz;
+                }
+                              
+                System.out.println("--------REPORTE DEL DIA--------");
+                System.out.println("Cantidad Actual en caja: "+ caja+ " Lps.");
+                System.out.println("Numero de ventas realizadas: "+TotalVentasDia);
+                System.out.println("Numero de compras realizadas: "+TotalComprasDia);
+                System.out.println("Volumen total de ventas: "+TotalMontoVentas+ " Lps.");
+                System.out.println("Volumen total de compras: "+TotalMontoCompras+ " Lps.");
+                System.out.println("Valor promedio de ventas: "+(TotalVentasDia > 0 ? TotalMontoVentas / TotalVentasDia : 0) + " Lps.");
+                System.out.println("Valor promedio de compras: "+(TotalComprasDia > 0 ? TotalMontoCompras / TotalComprasDia : 0)+ " Lps.");
+                System.out.println("Mayor venta: "+MayorGananciaVenta+ " Lps. en "+ProductoMayorGanancia);
+                System.out.println("Mayor Compra: "+MayorGastoCompra+ " Lps. en "+ProductoMayorGasto);
+                System.out.println("Producto Estrella: ");
+                
+                // imprimos el rankin en pantalla
+                System.out.println("\n--------Ranking de los productos--------");
+                System.out.println("1. "+PrimerProducto+ ": "+PrimerCantidad+ " Kg.");
+                System.out.println("2. "+SegundoProducto+ ": "+SegundaCantidad+" Kg.");
+                System.out.println("3. "+TercerProducto+ ": "+TercerCantidad+ " Kg.");
+                System.out.println("4. "+CuartoProducto+ ": "+CuartaCantidad+ " Kg.");
+                
 // ----------------5. CIERRE DE CAJA-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                
             } else if (opcionMenu == 5) {
 

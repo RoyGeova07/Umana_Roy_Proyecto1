@@ -37,8 +37,16 @@ public class Umana_Roy_Proyecto1_Q3 {
         int CodigoProductoCompra; // Variable para acceder al Codigo del Producto de la seccion Compra.
         double Impuesto = 0.07;
 
+        // variable como espacio en memoria para el numero de ventas.
         int numeroVentas = 0;
+        // variable como espacio en memoria para el numero de compras.
         int numeroCompras = 0;
+
+        double VolumenTotalCompra = 0;
+        double VolumenTotalVenta = 0;
+        
+        double ValorMedioVenta = 0;
+        double ValorMedioCompras = 0;
 
         // este es el kilo de los productos inicializado en 0.
         double InventarioAzucar = 0;
@@ -121,6 +129,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                         }
                     }
 
+                    // aqui se muestra el proveedor que eligio el usuario y la informacion detalla de los productos.
                     System.out.println("\nEl proveedor que selecciono es: " + TipoclienteVenta);
                     System.out.println("Ingrese el codigo del Producto: ");
                     System.out.println("1. Azucar - Lps. 30 - disponible kg " + InventarioAzucar);
@@ -128,25 +137,33 @@ public class Umana_Roy_Proyecto1_Q3 {
                     System.out.println("3. Trigo - Lps. 32 - disponible kg " + InventarioTrigo);
                     System.out.println("4. Maiz - Lps. 20 - disponible kg " + InventarioMaiz);
                     CodigoProductoVenta = lea.nextInt();
-                    String NombreProductoVenta = "";
+                    String NombreProductoVenta = ""; // aqui agregamos un producto string vacio, y se llena 
+                    // al elegir un producto.
 
+                    // aqui pongo un bucle por si el usuario escoge un numero que no esta en la seccion
+                    // el bucle se repitara hasta que el usuario elija una opcion dada.
                     while (CodigoProductoVenta < 1 || CodigoProductoVenta > 4) {
                         System.out.println("Error: debe ingresar una opcion valida, porfavor ingrese una opcion valida: .");
                         CodigoProductoVenta = lea.nextInt();
                     }
 
+                    // condicionales, donde si elige el puede comprar cualquier producto
                     if (TipoclienteVenta.equals("A")) {
                         poderComprar = true;
+                        // si elige proveedor b, puede seleccionar el producto 1,2 y 3.
                     } else if (TipoclienteVenta.equals("B")) {
                         if (CodigoProductoVenta >= 1 && CodigoProductoVenta <= 3) {
                             poderComprar = true;
                         }
+                        // si elige el tipo c, solo puede comprar el pruducto 4.
                     } else if (TipoclienteVenta.equals("C")) {
                         if (CodigoProductoVenta == 4) {
                             poderComprar = true;
                         }
                     }
 
+                    // condicionales por si no se vende el producto azcucar, 
+                    // si el kilo es = 0, saldra el mensaje y regresa donde estaba antes
                     if (poderComprar) {
                         if (CodigoProductoVenta == 1) {
                             NombreProductoVenta = "Azucar";
@@ -159,6 +176,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                         } else if (CodigoProductoVenta == 2) {
                             NombreProductoVenta = "Avena";
                             PrecioProducto = 25;
+                            // si el kilo es = 0, saldra el mensaje y regresa donde estaba antes
                             if (InventarioAvena == 0) {
                                 System.out.println("\nLo sentimos el producto Avena no lo tenemos disponible por ahora.");
                                 continue;// en este caso el continue, despues de motrar el error, que no tenemos
@@ -167,6 +185,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                         } else if (CodigoProductoVenta == 3) {
                             NombreProductoVenta = "Trigo";
                             PrecioProducto = 32;
+                            // si el kilo es = 0, saldra el mensaje y regresa donde estaba antes
                             if (InventarioTrigo == 0) {
                                 System.out.println("\nLo sentimos el producto Trigo no lo tenemos disponible por ahora.");
                                 continue;// en este caso el continue, despues de motrar el error, que no tenemos
@@ -175,6 +194,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                         } else if (CodigoProductoVenta == 4) {
                             NombreProductoVenta = "Maiz";
                             PrecioProducto = 20;
+                            // si el kilo es = 0, saldra el mensaje y regresa donde estaba antes
                             if (InventarioMaiz == 0) {
                                 System.out.println("\nLo sentimos el prodicto Maiz no lo tenmos disponible por ahora.");
                                 continue;// en este caso el continue, despues de motrar el error, que no tenemos
@@ -182,9 +202,17 @@ public class Umana_Roy_Proyecto1_Q3 {
                             }
                         }
 
+                        // aqui se muestra el nombre del producto que selecciono
+                        // y se pide que cantidad de kilo gramos quiere del producto.
                         System.out.println("El producto que selecciona es: " + NombreProductoVenta);
                         System.out.println("Ingrese la cantidad de kilogramos que desea comprar: ");
                         CantidadKilo = lea.nextDouble();
+
+                        // como 
+                        while (CantidadKilo <= 0) {
+                            System.out.println("Error: como vas a ingresar a kilogramos un cero o un numero negativo??, favor ingresaa un numero mayor a cero.");
+                            CantidadKilo = lea.nextDouble();
+                        }
 
                         // condicionales por si el ususario ingresa mas de los kilogramos que se tienen en venta
                         if (CodigoProductoVenta == 1 && CantidadKilo > InventarioAzucar) {
@@ -208,19 +236,23 @@ public class Umana_Roy_Proyecto1_Q3 {
                         }
 
                         // condicional para el descuento.
+                        // si el subtotal sale con 1000, tendra un descuento del 5%
                         if (subTotal >= 1000) {
-                            Descuento = 0.5;
+                            Descuento = 0.05;
+                            // si el subtotal sale con 5000, tendra un descuento del 10%
                         } else if (subTotal > 5000) {
                             Descuento = 0.10;
                         } else {
+                            // si no, no tendra ningun descuento.
                             Descuento = 0.0;
                         }
 
+                        // aqui se hace los calculos  de los descuentos, impuestos y del subtotal.
                         double TotalProductoVenta = CantidadKilo * PrecioProducto;
                         subTotal += TotalProductoVenta;
                         double DescuentoAplicado = subTotal * Descuento;
                         double SubtotalDespuesDescuento = subTotal - DescuentoAplicado;
-                        double ImpuestoAplicado = SubtotalDespuesDescuento - Impuesto;
+                        double ImpuestoAplicado = SubtotalDespuesDescuento * Impuesto;
                         double TotalaPagar = SubtotalDespuesDescuento + ImpuestoAplicado;
 
                         if (!ProductosCompradosVenta.isEmpty()) {
@@ -259,14 +291,26 @@ public class Umana_Roy_Proyecto1_Q3 {
                         // se suma lo que tenemos en caja por vender.
                         caja += TotalProductoVenta;
 
-                        numeroVentas++;
+                        // aqui se calcula lo del volumen de venta
+                        VolumenTotalVenta += TotalaPagar;
+                        
+                        numeroVentas++; // aqui se cuenta el numero de ventas que se han hecho.
 
+                        
+                        ValorMedioVenta = TotalaPagar / numeroVentas;
+
+                        
                     } else {
                         System.out.println("El proveedor no puede comprar dicho producto.");
                     }
 
-                    System.out.println("Desea comprar otro producto? (1. (si) / 2. (no)");
+                    System.out.println("Desea comprar otro producto? 1. (si) / 2. (no)");
                     ContinuarVenta = lea.nextInt();
+                    while (ContinuarVenta < 1 || ContinuarVenta > 2) {
+                        System.out.println("Error: Acaba de seleccionar una opcion invalida, favor seleccione una opcion valida: ");
+                        ContinuarVenta = lea.nextInt();
+                    }
+
                 }
 
 // ---------------------3. ENTRAR A COMPRAS-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------             
@@ -348,6 +392,12 @@ public class Umana_Roy_Proyecto1_Q3 {
                         System.out.println("El producto que usted selecciono es: " + CodigoProductoCompra + " " + NombreProductoCompra);
                         System.out.println("Ingrese la cantidad de kilogramos que desea comprar: ");
                         CantidadKilo = lea.nextDouble();
+
+                        while (CantidadKilo <= 0) {
+                            System.out.println("Error: como vas a ingresar en kilogramos un cero o un numero negativo??, favor ingresa un numero mayor a cero.");
+                            CantidadKilo = lea.nextDouble();
+                        }
+
                         double TotalProductoCompra = CantidadKilo * PrecioProducto; // Calcular el total del producto
 
                         // Verificar si hay suficiente dinero en la caja
@@ -402,7 +452,12 @@ public class Umana_Roy_Proyecto1_Q3 {
                             // Esta compra disminuirá el efectivo en caja.
                             caja -= TotalProductoCompra;
 
-                            numeroCompras++;
+                            // aqui se calcula el valor medio de las compras.
+                            VolumenTotalCompra += TotalProductoCompra;
+                            
+                            numeroCompras++; // aqui se cuentan el numero de compras que se han hecho.
+                            
+                            ValorMedioCompras = TotalProductoCompra / numeroCompras;
 
                             // despues de comprar kg los kg se incrementan y ya no estan en 0, con estas condiciones hacen que se actualizen.
                             if (CodigoProductoCompra == 1) {
@@ -415,11 +470,12 @@ public class Umana_Roy_Proyecto1_Q3 {
                                 InventarioMaiz += CantidadKilo;
                             }
 
+                            // aqui la caja se actuliza
                             System.out.println("Caja actualizada con: " + caja + " Lps.");
                         } else {
                             System.out.println("\nNO SE PUEDE PAGAR COMPRA, por insufisiencia monetaria.");
+                            break; // este break hace que pare el bucle y se muestre al menu principal.
                         }
-
                     } else {
                         System.out.println("\nProvedor no vende dicho Producto");
                     }
@@ -436,9 +492,11 @@ public class Umana_Roy_Proyecto1_Q3 {
                 System.out.println("Cantidad Actual en caja : " + caja + " Lps.");
                 System.out.println("Numero de compras realizadas durante el dia: " + numeroCompras);
                 System.out.println("Numero de ventas realizadas durante el dia: " + numeroVentas);
-                System.out.println("Volumen total gastado en compras: ");
-                System.out.println("Volumen efectuadas en ventas: ");
-                System.out.println("Margen de ganancia: ");
+//                System.out.println("Volumen total gastado en compras: " + VolumenTotalCompra);
+//                System.out.println("Volumen efectuadas en ventas: " + VolumenTotalVenta);
+//                System.out.println("Margen de ganancia: " + (VolumenTotalVenta - VolumenTotalCompra));
+//                System.out.println("Volumen medio de compras: "+ValorMedioCompras);
+//                System.out.println("Volumen medio de ventas: "+ValorMedioVenta);  arreglar esto...
 
 // ----------------5. CIERRE DE CAJA-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                
             } else if (opcionMenu == 5) {

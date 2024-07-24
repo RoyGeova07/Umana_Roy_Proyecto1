@@ -119,7 +119,6 @@ public class Umana_Roy_Proyecto1_Q3 {
                 String ProductosCompradosVenta = "";
 
                 // ahora vamos usar un while, para las ventas, para que el cliente se le permite hacer diferentes compras en la misma sesion, sin necesidad de volver al menu principal
-                // es demasiado util para simular el proceso de multiples compras en la tienda de Roy's
                 while (ContinuarVenta == 1) {
 
                     // uso de isEmpty en una condicional.

@@ -44,7 +44,7 @@ public class Umana_Roy_Proyecto1_Q3 {
         // variable como espacio en memoria para el numero de compras.
         int numeroCompras = 0;
 
-        // variables para calcular el volumen de la venta y la compra.
+        // variables para calcular el volumen total de la venta y la compra.
         double VolumenTotalCompra = 0;
         double VolumenTotalVenta = 0;
 

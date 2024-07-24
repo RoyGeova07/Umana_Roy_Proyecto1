@@ -511,6 +511,14 @@ public class Umana_Roy_Proyecto1_Q3 {
 
                     System.out.println("Desea comprar otro producto? (1 para si / 2 para no): ");
                     ContinuarCompra = lea.nextInt();
+                    // si el usuario elige un numero que no sea 1 o 2 le saldra este mensaje con un bucle
+                    // se repetira este bucle hasta que que elija la opcion correcta.
+                    while (ContinuarCompra < 1 || ContinuarCompra > 2) {
+                        System.out.println("Error: Acaba de seleccionar una opcion invalida, favor seleccione una opcion valida: ");
+                        ContinuarCompra = lea.nextInt();
+                    }
+
+                    
                 }
 
 // ---------------4. ENTRAR A REPORTES-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                

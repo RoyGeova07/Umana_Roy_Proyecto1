@@ -36,8 +36,8 @@ public class Umana_Roy_Proyecto1_Q3 {
         double CantidadKilo; // este seria la cantidad de kilogramos.
         double Descuento = 0; // Variable del descuento.
         int CodigoProductoCompra; // Variable para acceder al Codigo del Producto de la seccion Compra.
-        double Impuesto = 0.07; // NO SE SI ESTA BUENO
-        double subTotalCompra = 0;
+        double Impuesto = 0.07; // Variable del impuesto del 7%.
+        double subTotalCompra = 0; // no se si el subtotalCompra se necesita xd.
 
         // variable como espacio en memoria para el numero de ventas.
         int numeroVentas = 0;
@@ -52,6 +52,7 @@ public class Umana_Roy_Proyecto1_Q3 {
         double ValorMedioVentas = 0;
         double ValorMedioCompras = 0;
 
+        // variables para calcular la MayorGananacia de venta y del mayor gasto de compra.
         double MayorGananciaVenta = 0;
         double MayorGastoCompra = 0;
 
@@ -64,6 +65,7 @@ public class Umana_Roy_Proyecto1_Q3 {
         // uso del while con 6 opciones
         while (opcionMenu != 6) {
 
+            // se muestran las opciones del menu..
             System.out.println("\nMenu Principal");
             System.out.println("1. Abrir Caja");
             System.out.println("2. Ventas");

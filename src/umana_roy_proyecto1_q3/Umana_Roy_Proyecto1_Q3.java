@@ -44,7 +44,7 @@ public class Umana_Roy_Proyecto1_Q3 {
         // variable como espacio en memoria para el numero de compras.
         int numeroCompras = 0;
 
-        // variables para calcular el volumen total de la venta y la compra.
+        // variables para calcular el volumen de la venta y la compra.
         double VolumenTotalCompra = 0;
         double VolumenTotalVenta = 0;
 
@@ -52,7 +52,6 @@ public class Umana_Roy_Proyecto1_Q3 {
         double ValorMedioVentas = 0;
         double ValorMedioCompras = 0;
 
-        // variables para calcular la MayorGananacia de venta y del mayor gasto de compra.
         double MayorGananciaVenta = 0;
         double MayorGastoCompra = 0;
 
@@ -65,7 +64,6 @@ public class Umana_Roy_Proyecto1_Q3 {
         // uso del while con 6 opciones
         while (opcionMenu != 6) {
 
-            // se muestran las opciones del menu..
             System.out.println("\nMenu Principal");
             System.out.println("1. Abrir Caja");
             System.out.println("2. Ventas");
@@ -85,13 +83,20 @@ public class Umana_Roy_Proyecto1_Q3 {
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
             if (opcionMenu == 1) {
-
+                System.out.println("----------------------------------------------------------");
+                System.out.println("Caja: "+caja);
                 System.out.println("Ingrese la cantidad de efectivo para guardar en la caja: ");
                 monto = lea.nextDouble();
+                
+                while(monto <= 0){
+                    System.out.println("No puede ingresar el numero 0 o un numero menor, porfavor ingresa de nuevo la cantidad: ");
+                    monto = lea.nextDouble();
+                }
                 //aqui use el operador += para sumar el monto ingresando en caja, esto se hace para actualizar el valor de caja con el nuevo monto
                 //ingresando por el usuario esto es equivalente a escribir: caja = caja + monto
                 caja += monto;
                 System.out.println("Caja abierta con: " + caja + " Lps.");
+                System.out.println("----------------------------------------------------------");
 
 // ------------------2. ENTRAR A VENTAS------------------------------------------------------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -123,10 +128,13 @@ public class Umana_Roy_Proyecto1_Q3 {
 
                     // uso de isEmpty en una condicional.
                     if (TipoclienteVenta.isEmpty()) {
-                        System.out.println("Ingrese el tipo de proveedor:");
-                        System.out.println("A. - El tipo (a) provee todos los producto");
-                        System.out.println("B. - El tipo (b) solo provee los productos con codigo 1, 2 y 3.");
-                        System.out.println("C. - El tipo (c) solo provee el producto con codigo 4.");
+                        System.out.println("-----------------------------------------------------------------------------------");
+                        System.out.println("Usted a seleccionado ventas.");
+                        System.out.println("A. - El tipo (a) puede comprar todos los productos.");
+                        System.out.println("B. - El tipo (b) solo puede comprar a los codigos 1 (Azucar), 2 (Avena) y 3(Trigo).");
+                        System.out.println("C. - El tipo (c) solo puede comprar a losS codigos 4 (Maiz).");
+                        System.out.println("-----------------------------------------------------------------------------------");
+                        System.out.println("Ingrese el tipo de proveedor que se ve en pantalla (A),(B) o (C): ");
                         TipoclienteVenta = lea.next().toUpperCase();
 
                         // usare un bucle while donde si el usuario no ingresa una opcion valida entre A,B,C
@@ -138,12 +146,15 @@ public class Umana_Roy_Proyecto1_Q3 {
                     }
 
                     // aqui se muestra el proveedor que eligio el usuario y la informacion detalla de los productos.
-                    System.out.println("\nEl proveedor que selecciono es: " + TipoclienteVenta);
+                    System.out.println("-----------------------------------------------------------------------------------");
+                    System.out.println("El proveedor que selecciono es: " + TipoclienteVenta);
+                      System.out.println(" ____________________________________________________________________________________\n"
+                                + "|____Codigo____|__________Producto__________|_____Precio Venta_____|____kilogramos___|\n"                 
+                                + "|       1      |           AZUCAR           |       LPS. 30        |    "+InventarioAzucar+"          |\n"
+                                + "|       2      |           AVENA            |       LPS. 25        |    "+InventarioAvena+"          |\n"                
+                                + "|       3      |           TRIGO            |       LPS. 32        |    "+InventarioTrigo+"          |\n"
+                                + "|       4      |            MAIZ            |       LPS. 20        |    "+InventarioMaiz+"          |");
                     System.out.println("Ingrese el codigo del Producto: ");
-                    System.out.println("1. Azucar - Lps. 30 - disponible kg " + InventarioAzucar);
-                    System.out.println("2. Avena - Lps. 25 - disponible kg " + InventarioAvena);
-                    System.out.println("3. Trigo - Lps. 32 - disponible kg " + InventarioTrigo);
-                    System.out.println("4. Maiz - Lps. 20 - disponible kg " + InventarioMaiz);
                     CodigoProductoVenta = lea.nextInt();
                     String NombreProductoVenta = ""; // aqui agregamos un producto string vacio, y se llena 
                     // al elegir un producto.
@@ -275,7 +286,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                         // el += concatena el nuevo producto NombreProductoCompra al final de la cadena ProductosCompradosCompra
                         ProductosCompradosVenta += NombreProductoVenta;
 
-                        System.out.println("\n--------Detalles de la venta--------");
+                        System.out.println("\n-----------------------------Detalles de la venta--------------------------------");
                         System.out.println("Lista de productos vendidos: " + ProductosCompradosVenta);
                         System.out.println("Producto Agregado: " + NombreProductoVenta);
                         System.out.println("Cantidad de kilogramo " + CantidadKilo + " Kg.");
@@ -285,6 +296,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                         System.out.println("Subtotal despues de descuento: " + SubtotalDespuesDescuento + " Lps.");
                         System.out.println("Impuesto (7%): " + ImpuestoAplicado + " Lps.");
                         System.out.println("Total a Pagar. " + TotalaPagar + " Lps.");
+                        System.out.println("-----------------------------------------------------------------------------------");
 
                         // con estas condicionales despues de que el cliente agarre los kg que compramos los kg se actualizan y se decrementan.
                         if (CodigoProductoVenta == 1) {
@@ -315,7 +327,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                         numeroVentas++; // aqui se cuenta el numero de ventas que se han hecho.
 
                     } else {
-                        System.out.println("El proveedor no puede comprar dicho producto.");
+                        System.out.println("EL PROVEEDOR PUEDE CREAR DICHO PRODUCTO.");
                     }
 
                     if (InventarioAzucar == 0 && InventarioAvena == 0 && InventarioTrigo == 0 && InventarioMaiz == 0) {
@@ -348,10 +360,14 @@ public class Umana_Roy_Proyecto1_Q3 {
                 while (ContinuarCompra == 1) {
 
                     if (TipoclienteCompra.isEmpty()) {
-                        System.out.println("Ingrese el tipo de proveedor");
-                        System.out.println("A. - El tipo (a) solo provee los productos con codigo 1 y 4.");
-                        System.out.println("B. - El tipo (b) solo provee los productos con codigo 2 y 3.");
-                        System.out.println("C. - El tipo (c) solo provee el producto con codigo 2.");
+                        System.out.println("\nUsted a seleccionado compras.");
+                        System.out.println("Primeramente se le va pedir que elija un proveedor.");
+                        System.out.println("-----------------------------------------------------------------------------------");
+                        System.out.println("A. - El tipo (a) solo puede comprar a los codigos 1 (Azucar) y 4 (Maiz).");
+                        System.out.println("B. - El tipo (b) solo puede comprar a los codigos 2 (Avena) y 3 (Trigo).");
+                        System.out.println("C. - El tipo (c) solo puede comprar al codigo 2 (Avena).");
+                        System.out.println("-----------------------------------------------------------------------------------");
+                        System.out.println("Ingrese el tipo de proveedor que se ve en pantalla (A),(B) o (C): ");
                         TipoclienteCompra = lea.next().toUpperCase();
 
                         // error con un bucle, que su el usuario no elige una de las tres letras que estas en seleccion mostrara
@@ -365,11 +381,15 @@ public class Umana_Roy_Proyecto1_Q3 {
                     // se ve en consola lo que eligio el usuario.
                     System.out.println("\nEl proveedor que usted seleciono es: " + TipoclienteCompra);
                     // Mostrar solo los productos que el cliente puede comprar
+                    System.out.println("-----------------------------------------------------------------------------------");
+                   System.out.println(" __________________________________________________________________\n"
+                                + "|____Codigo____|__________Producto__________|_____Precio Venta_____|\n"                
+                                + "|       1      |           AZUCAR           |       LPS. 30        |\n"
+                                + "|       2      |           AVENA            |       LPS. 25        |\n"                
+                                + "|       3      |           TRIGO            |       LPS. 32        |\n"
+                                + "|       4      |            MAIZ            |       LPS. 20        |             ");
+                    System.out.println("-----------------------------------------------------------------------------------");
                     System.out.println("Ingrese el codigo del Producto:");
-                    System.out.println("1. Azucar - Lps. 25");
-                    System.out.println("2. Avena - Lps. (B:20 Lps.) y (C:22 Lps.)");
-                    System.out.println("3. Trigo - Lps. 32");
-                    System.out.println("4. Maiz - Lps. 20");
                     CodigoProductoCompra = lea.nextInt();
                     String NombreProductoCompra = ""; // aqui guardamos con un String el nombre del producto
 
@@ -432,10 +452,13 @@ public class Umana_Roy_Proyecto1_Q3 {
                         }
 
                         // se muestra en pantalla el producto que selecciono el usuario con su respectivo codigo.
+                        System.out.println("\n-----------------------------------------------------------------------------------");
                         System.out.println("El producto que usted selecciono es: " + CodigoProductoCompra + " " + NombreProductoCompra);
-                        // aqui se ingresa por el usuario la cantidad de kilogramos que desea comprar.
+                        // aqui se ingresa por el usuario la cantidad de kilogramos que desea comprar
+                        System.out.println("-----------------------------------------------------------------------------------");
                         System.out.println("Ingrese la cantidad de kilogramos que desea comprar: ");
                         CantidadKilo = lea.nextDouble();
+                        System.out.println("-----------------------------------------------------------------------------------");
 
                         // error en compras por si el usuario elige un 0 o un numero menor, el bucle
                         // se repetira hasta que se un numero mayotr a 0.
@@ -489,12 +512,13 @@ public class Umana_Roy_Proyecto1_Q3 {
                             Resumiendo en esta partecita del codigo asegura que los productos comprados que hace el usuario se agregue a lista de productos
                              */
                             // aqui se muestra los detalles de la compra.
-                            System.out.println("\n--------Detalles de la compra--------");
+                            System.out.println("\n-------------------------------Detalles de la compra-----------------------------");
                             System.out.println("Lista de productos comprados: " + ProductosCompradosCompra);
                             System.out.println("Producto Agregado: " + NombreProductoCompra);
                             System.out.println("Cantidad de Kilogramo: " + CantidadKilo + " Kg");
                             System.out.println("Precio por Kg: " + PrecioProducto + " Lps.");
                             System.out.println("Total Producto: " + TotalProductoCompra + " Lps.");
+                            System.out.println("-----------------------------------------------------------------------------------");
 
                             // Esta compra disminuirá el efectivo en caja.
                             caja -= TotalProductoCompra;
@@ -528,14 +552,15 @@ public class Umana_Roy_Proyecto1_Q3 {
                             System.out.println("Caja actualizada con: " + caja + " Lps.");
                         } else {
                             // si no hay suficiente dinero en la caja, no se peude comprar.
-                            System.out.println("\nNO SE PUEDE PAGAR COMPRA, por insufisiencia monetaria.");
+                            System.out.println("\nNo se puede pagar compra, por insufisiencia monetaria.");
                         }
                     } else {
                         // proveedor no vende dicho producto, y el poderComprar se vuelve falso.
-                        System.out.println("\nProvedor no vende dicho Producto");
+                        System.out.println("\nPROVEEDOR NO VENDE DICHO PRODUCTO");
                     }
 
                     // aqui dejo la opcion si quiere o no volver a comprar un producto.
+                    System.out.println("----------------------------------------------------------");
                     System.out.println("Desea comprar otro producto? (1 para si / 2 para no): ");
                     ContinuarCompra = lea.nextInt();
                     // si el usuario elige un numero que no sea 1 o 2 le saldra este mensaje con un bucle
@@ -552,7 +577,7 @@ public class Umana_Roy_Proyecto1_Q3 {
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             } else if (opcionMenu == 4) {
                 // aqui se muestra en consola lo que es los reportes.
-                System.out.println("--------Reportes--------");
+                System.out.println("-----------------------Reportes-----------------------");
                 System.out.println("Cantidad Actual en caja : " + caja + " Lps.");
                 System.out.println("Numero de compras realizadas durante el dia: " + numeroCompras);
                 System.out.println("Numero de ventas realizadas durante el dia: " + numeroVentas);

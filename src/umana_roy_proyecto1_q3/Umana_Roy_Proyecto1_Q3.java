@@ -93,6 +93,7 @@ public class Umana_Roy_Proyecto1_Q3 {
             System.out.println("4. Reportes del dia");
             System.out.println("5. Cierre de caja");
             System.out.println("6. Salir de sistema");
+            System.out.println("Ingrese una opcion: ");
             opcionMenu = lea.nextInt();
 
             // si eliges una opcion que no este en el menu saldra un error.
@@ -166,10 +167,10 @@ public class Umana_Roy_Proyecto1_Q3 {
                             System.out.println("Usted a seleccionado ventas.");
                             System.out.println("A. - El tipo (a) puede comprar todos los productos.");
                             System.out.println("B. - El tipo (b) solo puede comprar a los codigos 1 (Azucar), 2 (Avena) y 3(Trigo).");
-                            System.out.println("C. - El tipo (c) solo puede comprar a losS codigos 4 (Maiz).");
+                            System.out.println("C. - El tipo (c) solo puede comprar a los codigos 4 (Maiz).");
                             System.out.println("-----------------------------------------------------------------------------------");
                             System.out.println("Ingrese el tipo de proveedor que se ve en pantalla (A),(B) o (C): ");
-                            TipoclienteVenta = lea.next().toUpperCase(); // cuanf   
+                            TipoclienteVenta = lea.next().toUpperCase(); // cuando el usuario ingresa una letra miniscula, el upper case convirte esa letra a mayuscula. 
 
                             // usare un bucle while donde si el usuario no ingresa una opcion valida entre A,B,C
                             // seguira repitiendose que ingrese el tipo de cliente hasta que ingrese la letra Valida.
@@ -201,12 +202,14 @@ public class Umana_Roy_Proyecto1_Q3 {
                             CodigoProductoVenta = lea.nextInt();
                         }
 
+                        poderComprar = false; // sin este false, el usuario elgiendo cualquier proveedor, podria cualquier producto.
+
                         // condicionales, donde si elige A puede comprar cualquier producto
                         if (TipoclienteVenta.equals("A")) {
                             poderComprar = true;
                             // si elige proveedor b, puede seleccionar el producto 1,2 y 3.
                         } else if (TipoclienteVenta.equals("B")) {
-                            if (CodigoProductoVenta >= 1 && CodigoProductoVenta <= 3) {
+                            if (CodigoProductoVenta == 1 || CodigoProductoVenta == 2 || CodigoProductoVenta == 3) {
                                 poderComprar = true;
                             }
                             // si elige el tipo c, solo puede comprar el pruducto 4.
@@ -341,23 +344,23 @@ public class Umana_Roy_Proyecto1_Q3 {
                             // si el codigoproductovneta es 1, entonces el inventarioazcuar se resta a la cantidadKiloventa
                             // y las ventasAzucar se suma con la cantidadkiloventa.
                             if (CodigoProductoVenta == 1) {
-                                InventarioAzucar -= CantidadKiloVenta;
-                                VentasAzucarRanking += CantidadKiloVenta;
+                                InventarioAzucar = InventarioAzucar - CantidadKiloVenta;
+                                VentasAzucarRanking = VentasAzucarRanking + CantidadKiloVenta;
                                 // si el codigoproductovneta es 2, entonces el inventarioavena se resta a la cantidadKiloventa
                                 // y las ventasAvena se suma con la cantidadkiloventa.
                             } else if (CodigoProductoVenta == 2) {
-                                InventarioAvena -= CantidadKiloVenta;
-                                VentasAvenaRanking += CantidadKiloVenta;
+                                InventarioAvena = InventarioAvena - CantidadKiloVenta;
+                                VentasAvenaRanking = VentasAvenaRanking + CantidadKiloVenta;
                                 // si el codigoproductovneta es 3, entonces el inventarioTrigo se resta a la cantidadKiloventa
                                 // y las ventasTrigo se suma con la cantidadkiloventa.
                             } else if (CodigoProductoVenta == 3) {
-                                InventarioTrigo -= CantidadKiloVenta;
-                                VentasTrigoRanking += CantidadKiloVenta;
+                                InventarioTrigo = InventarioTrigo - CantidadKiloVenta;
+                                VentasTrigoRanking = VentasTrigoRanking + CantidadKiloVenta;
                                 // si el codigoproductovneta es 4, entonces el inventarioMaiz se resta a la cantidadKiloventa
                                 // y las ventasmaiz se suma con la cantidadkiloventa.
                             } else if (CodigoProductoVenta == 4) {
-                                InventarioMaiz -= CantidadKiloVenta;
-                                VentasMaizRanking += CantidadKiloVenta;
+                                InventarioMaiz = InventarioMaiz - CantidadKiloVenta;
+                                VentasMaizRanking = VentasMaizRanking + CantidadKiloVenta;
                             }
 
                             // se suma lo que tenemos en caja por vender.
@@ -404,7 +407,6 @@ public class Umana_Roy_Proyecto1_Q3 {
                         }
 
                         // eleccion si desea comprar otro producto si o no.
-                        System.out.println("caja actualizada con: " + caja);
                         System.out.println("Desea comprar otro producto? 1. (si) / 2. (no)");
                         ContinuarVenta = lea.nextInt();
                         // si el usuario elige un numero que no sea 1 o 2 le saldra este mensaje con un bucle
@@ -476,7 +478,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                             CodigoProductoCompra = lea.nextInt();
                         }
 
-                        poderComprar = false; // reiniciamos poderComprar para cada selección de producto
+                        poderComprar = false; // reiniciamos poderComprar para cada selección de producto.
 
                         // si el usuario elige "A" el usuario solo podra comprar los productos con codigo 1 y 4.
                         if (TipoclienteCompra.equals("A")) {

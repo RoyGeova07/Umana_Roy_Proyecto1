@@ -86,6 +86,7 @@ public class Umana_Roy_Proyecto1_Q3 {
         // uso del while con 6 opciones
         while (opcionMenu != 6) {
 
+            // sale las opciones disponibles en pantalla.
             System.out.println("\nMenu Principal");
             System.out.println("1. Abrir Caja");
             System.out.println("2. Ventas");
@@ -100,6 +101,7 @@ public class Umana_Roy_Proyecto1_Q3 {
             if (opcionMenu < 1 || opcionMenu > 6) {
                 System.out.println("\n");
                 System.out.println("Error: debe seleccionar una opcion valida, vuelva a intentarlo porfavor.!!!");
+                // sigue siendo el primer inicio, por que no a ingresado un numero valido.
                 primerInicio = true;
             }
 
@@ -107,26 +109,32 @@ public class Umana_Roy_Proyecto1_Q3 {
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
             if (opcionMenu == 1) {
+                System.out.println("A ingresado a caja.");
                 System.out.println("----------------------------------------------------------");
                 // es true por que la caja abre.
                 cajaAbierta = true;
                 // metemos el primer inicio con una condicional.
+                // sin el primer inicio, el programa pediria que de nuevo ingresara la cantidad de efectivo.
                 if (primerInicio) {
 
+                    // se muestra lo que hay en caja.
+                    // y se ingrese la cantidad de efectivo a guardar.
                     System.out.println("Caja: " + caja);
                     System.out.println("Ingrese la cantidad de efectivo para guardar en la caja: ");
                     monto = lea.nextDouble();
 
+                    // bucle por si el usuario mete un numero negativo o un numero 0 en el efectivo.
                     while (monto <= 0) {
                         System.out.println("No puede ingresar el numero 0 o un numero menor, porfavor ingresa de nuevo la cantidad: ");
                         monto = lea.nextDouble();
                     }
-                    //aqui use el operador += para sumar el monto ingresando en caja, esto se hace para actualizar el valor de caja con el nuevo monto
+                    // caja = caja + monto para sumar el monto ingresando en caja, esto se hace para actualizar el valor de caja con el nuevo monto.
                     //ingresando por el usuario esto es equivalente a escribir: caja = caja + monto
                     caja = caja + monto;
                     primerInicio = false; //despues del primer inicio cambia a falso
 
                 }
+                // sale del bucle del primer inicion y sale lo que esta en pantalla.
                 System.out.println("Caja abierta con: " + caja + " Lps.");
                 System.out.println("----------------------------------------------------------");
 
@@ -164,7 +172,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                         // uso de isEmpty en una condicional.
                         if (TipoclienteVenta.isEmpty()) {
                             System.out.println("-----------------------------------------------------------------------------------");
-                            System.out.println("Usted a seleccionado ventas.");
+                            System.out.println("\nUsted a seleccionado ventas.");
                             System.out.println("A. - El tipo (a) puede comprar todos los productos.");
                             System.out.println("B. - El tipo (b) solo puede comprar a los codigos 1 (Azucar), 2 (Avena) y 3(Trigo).");
                             System.out.println("C. - El tipo (c) solo puede comprar a los codigos 4 (Maiz).");
@@ -319,7 +327,7 @@ public class Umana_Roy_Proyecto1_Q3 {
 
                             if (!ProductosCompradosVenta.isEmpty()) {
                                 // aqui se agrega una coma en productoscompradoscompra.
-                                // el proposito de la coma es para separar los produdctos de los demas productos.
+                                // el proposito de la coma es para separar los productos de los demas productos.
                                 // la funcionalidad del operador de concatenacion "+=" es que aniade la coma y el espacio al final de la cadena existente.
                                 ProductosCompradosVenta = ProductosCompradosVenta + ", ";
                             }
@@ -364,7 +372,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                             }
 
                             // se suma lo que tenemos en caja por vender.
-                            caja += TotalProductoVenta;
+                            caja += TotalaPagar;
 
                             // aqui se calcula lo del volumen de venta
                             VolumenTotalVenta += TotalaPagar;
@@ -437,6 +445,9 @@ public class Umana_Roy_Proyecto1_Q3 {
                     // aqui es pasa lo mismo como en la parte de ventas.
                     while (ContinuarCompra == 1) {
 
+                        // se agrega la condicional el tipo de cliente esta vacio, cuando esta vacio, se cumple y muestra todo lo que esta dentro de la condicional
+                        // cuando ya se ingresa el tipo de proveedo (cliente), ya no esta vacio, por ello ya va a salir en pantalla lo que esto
+                        // ya no pedira que tipo de proveedor es, despues de decir a si, que quiero comprar otro producto.
                         if (TipoclienteCompra.isEmpty()) {
                             System.out.println("\nUsted a seleccionado compras.");
                             System.out.println("Primeramente se le va pedir que elija un proveedor.");
@@ -458,7 +469,7 @@ public class Umana_Roy_Proyecto1_Q3 {
 
                         // se ve en consola lo que eligio el usuario.
                         System.out.println("\nEl proveedor que usted seleciono es: " + TipoclienteCompra);
-                        // Mostrar solo los productos que el cliente puede comprar
+                        // Muestra los productos que puede comprar que el cliente puede comprar
                         System.out.println("-----------------------------------------------------------------------------------");
                         System.out.println(" _______________________________________________________________________\n"
                                 + "|____Codigo____|__________Producto__________|_______Precio Compra_______|\n"
@@ -653,8 +664,9 @@ public class Umana_Roy_Proyecto1_Q3 {
 
                     }
 
+                    // sale el else que la caja esta cerrada.
                 } else {
-                    System.out.println("\nLa caja esta cerrada. abra la coaja para poder comprar.");
+                    System.out.println("\nLa caja esta cerrada. abra la caja para poder comprar.");
                 }
 
 // ---------------4. ENTRAR A REPORTES-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                
@@ -662,6 +674,7 @@ public class Umana_Roy_Proyecto1_Q3 {
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             } else if (opcionMenu == 4) {
 
+                // condicional, cuando la caja este abierta, aparece todo lo que este dentro de esta condicion.
                 if (cajaAbierta) {
 
                     // aqui se muestra en consola lo que es los reportes.
@@ -876,6 +889,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                         }
                     }
 
+                    // no se mostrara esto porque la caja esta cerrada.
                 } else {
                     System.out.println("\nCaja cerrada, por favor haga ventas y compras para poder ver los reportes correctamente.");
 
@@ -886,7 +900,9 @@ public class Umana_Roy_Proyecto1_Q3 {
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             } else if (opcionMenu == 5) {
 
+                // condicional cuando la caja esta abierta.
                 if (cajaAbierta) {
+                    System.out.println("Usted a seleccionado cierre de caja.");
 
                     System.out.println("\nTotal de Ganancia del dia: " + caja);
                     System.out.println("Cuanto de este efectivo quiere depositar en el Banco? (Maximo 60%): ");
@@ -901,7 +917,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                     // si el deposito que se ingreso es mayor a la caja por el 60%
                     // entonces saldra este mensaje.
                     if (deposito > caja * 0.60) {
-                        System.out.println("No puedes depositar mas del 60% de la caja, vuelve a intentarlo ingresando a cierre de caja de nuevo.");
+                        System.out.println("No puedes depositar mas del 60% de la caja, vuelve a intentarlo ingresando a cierre de caja de nuevo. (Ojo aun compras y ventas esta abierto.)");
                         continue; // este continue hace que despues de almacenar mas dinero de lo que tenemos en caja, no cierre la caja, para que el usuario vuelva a ingresar a cierre de caja y vuelva a ingresar de nuevo y monto factible.
                     } else { // si no, el deposito se realizara.
                         caja = caja - deposito;
@@ -911,7 +927,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                     // la caja se cierra = a falso.
                     cajaAbierta = false;
                     System.out.println("Caja Cerrada.");
-                    System.out.println("Todos los productos se han reiniciado a cero, si quiere volver a comenzar, dele a abrir caja.");
+                    System.out.println("Todos los productos se han reiniciado a cero, si quiere volver a comenzar, dele abrir caja.");
 
                     // aqui se llaman de vuelta a todas la variables inicializadas en cero
                     // para que todos los contadores se reinicien y vuelvan a cero.
@@ -937,6 +953,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                     VentasTrigoRanking = 0;
                     VentasMaizRanking = 0;
 
+                    // este mensaje saldra cuando la caja esta cerrada.
                 } else {
                     System.out.println("\nError: no puede cerrar la caja, sin a ver abierto la caja.");
                 }

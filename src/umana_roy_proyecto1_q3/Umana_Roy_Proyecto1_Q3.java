@@ -88,12 +88,14 @@ public class Umana_Roy_Proyecto1_Q3 {
 
             // sale las opciones disponibles en pantalla.
             System.out.println("\nMenu Principal");
-            System.out.println("1. Abrir Caja");
-            System.out.println("2. Ventas");
-            System.out.println("3. Compras");
-            System.out.println("4. Reportes del dia");
-            System.out.println("5. Cierre de caja");
-            System.out.println("6. Salir de sistema");
+            System.out.println("---------------------------");
+            System.out.println("|1. Abrir Caja            |");
+            System.out.println("|2. Ventas                |");
+            System.out.println("|3. Compras               |");
+            System.out.println("|4. Reportes del dia      |");
+            System.out.println("|5. Cierre de caja        |");
+            System.out.println("|6. Salir de sistema      |");
+            System.out.println("---------------------------");
             System.out.println("Ingrese una opcion: ");
             opcionMenu = lea.nextInt();
 
@@ -135,6 +137,7 @@ public class Umana_Roy_Proyecto1_Q3 {
 
                 }
                 // sale del bucle del primer inicion y sale lo que esta en pantalla.
+                caja = Math.round(caja * 100.0) / 100.0;
                 System.out.println("Caja abierta con: " + caja + " Lps.");
                 System.out.println("----------------------------------------------------------");
 
@@ -187,6 +190,11 @@ public class Umana_Roy_Proyecto1_Q3 {
                                 TipoclienteVenta = lea.next().toUpperCase();
                             }
                         }
+                        // este math.round funciona para redondear lo son los kilos.
+                        InventarioAzucar = Math.round(InventarioAzucar * 100.0) / 100.0;
+                        InventarioAvena = Math.round(InventarioAvena * 100.0) / 100.0;
+                        InventarioMaiz = Math.round(InventarioMaiz * 100.0) / 100.0;
+                        InventarioTrigo = Math.round(InventarioTrigo * 100.0) / 100.0;
 
                         // aqui se muestra el proveedor que eligio el usuario y la informacion detalla de los productos.
                         System.out.println("-----------------------------------------------------------------------------------");
@@ -323,6 +331,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                             double DescuentoAplicado = subTotalVenta * Descuento;
                             double SubtotalDespuesDescuento = subTotalVenta - DescuentoAplicado;
                             double ImpuestoAplicado = SubtotalDespuesDescuento * Impuesto;
+                            ImpuestoAplicado = Math.round(ImpuestoAplicado * 100.0) / 100.0; // redondea a dos decimales
                             double TotalaPagar = SubtotalDespuesDescuento + ImpuestoAplicado;
 
                             if (!ProductosCompradosVenta.isEmpty()) {
@@ -336,9 +345,16 @@ public class Umana_Roy_Proyecto1_Q3 {
                             // el += concatena el nuevo producto NombreProductoCompra al final de la cadena ProductosCompradosCompra
                             ProductosCompradosVenta = ProductosCompradosVenta + NombreProductoVenta;
 
+                            PrecioProducto = Math.round(PrecioProducto * 100.0) / 100.0;
+                            subTotalVenta = Math.round(subTotalVenta * 100.0) / 100.0;
+                            DescuentoAplicado = Math.round(DescuentoAplicado * 100.0) / 100.0;
+                            ImpuestoAplicado = Math.round(ImpuestoAplicado * 100.0) / 100.0;
+                            TotalaPagar = Math.round(TotalaPagar * 100.0) / 100.0;
+
                             // se muestran los detalles de la venta.
                             System.out.println("\n-----------------------------Detalles de la venta--------------------------------");
                             System.out.println("Lista de productos vendidos: " + ProductosCompradosVenta);
+                            System.out.println("-----------------------------------------------------------------------------------");
                             System.out.println("Producto Agregado: " + NombreProductoVenta);
                             System.out.println("Cantidad de kilogramo " + CantidadKiloVenta + " Kg.");
                             System.out.println("Precio por Kg " + PrecioProducto + " Lps.");
@@ -599,9 +615,12 @@ public class Umana_Roy_Proyecto1_Q3 {
                             
                             Resumiendo en esta partecita del codigo asegura que los productos comprados que hace el usuario se agregue a lista de productos
                                  */
+                                TotalProductoCompra = Math.round(TotalProductoCompra * 100.0) / 100.0;
+
                                 // aqui se muestra los detalles de la compra.
                                 System.out.println("\n-------------------------------Detalles de la compra-----------------------------");
                                 System.out.println("Lista de productos comprados: " + ProductosCompradosCompra);
+                                System.out.println("-----------------------------------------------------------------------------------");
                                 System.out.println("Producto Agregado: " + NombreProductoCompra);
                                 System.out.println("Cantidad de Kilogramo: " + CantidadKiloCompra + " Kg");
                                 System.out.println("Precio por Kg: " + PrecioProducto + " Lps.");
@@ -641,6 +660,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                                 }
 
                                 // aqui la caja se actuliza
+                                caja = Math.round(caja * 100.0) / 100.0;
                                 System.out.println("Caja actualizada con: " + caja + " Lps.");
                             } else {
                                 // si no hay suficiente dinero en la caja, no se peude comprar.
@@ -677,6 +697,15 @@ public class Umana_Roy_Proyecto1_Q3 {
                 // condicional, cuando la caja este abierta, aparece todo lo que este dentro de esta condicion.
                 if (cajaAbierta) {
 
+                    caja = Math.round(caja * 100.0) / 100.0;
+                    VolumenTotalCompra = Math.round(VolumenTotalCompra * 100.0) / 100.0;
+                    VolumenTotalVenta = Math.round(VolumenTotalVenta * 100.0) / 100.0;
+
+                    ValorMedioCompras = Math.round(ValorMedioCompras * 100.0) / 100.0;
+                    ValorMedioVentas = Math.round(ValorMedioVentas * 100.0) / 100.0;
+                    MayorGananciaVenta = Math.round(MayorGananciaVenta * 100.0) / 100.0;
+                    MayorGastoCompra = Math.round(MayorGastoCompra * 100.0) / 100.0;
+
                     // aqui se muestra en consola lo que es los reportes.
                     System.out.println("-----------------------Reportes-----------------------");
                     System.out.println("Cantidad Actual en caja : " + caja + " Lps.");
@@ -684,7 +713,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                     System.out.println("Numero de ventas realizadas durante el dia: " + numeroVentas);
                     System.out.println("Volumen total gastado en compras: " + VolumenTotalCompra + " Lps.");
                     System.out.println("Volumen efectuadas en ventas: " + VolumenTotalVenta + " Lps.");
-                    System.out.println("Margen de ganancia: " + (VolumenTotalVenta - VolumenTotalCompra + " Lps."));
+                    System.out.println("Margen de ganancia: " + (VolumenTotalVenta - VolumenTotalCompra) + " Lps.");
                     System.out.println("Volumen medio de compras: " + ValorMedioCompras + " Lps.");
                     System.out.println("Volumen medio de ventas: " + ValorMedioVentas + " Lps.");
                     System.out.println("La venta con mayor ganancia realizada: " + MayorGananciaVenta + " Lps.");
@@ -917,7 +946,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                     // si el deposito que se ingreso es mayor a la caja por el 60%
                     // entonces saldra este mensaje.
                     if (deposito > caja * 0.60) {
-                        System.out.println("No puedes depositar mas del 60% de la caja, vuelve a intentarlo ingresando a cierre de caja de nuevo. (Ojo aun compras y ventas esta abierto.)");
+                        System.out.println("No puedes depositar mas del 60% de la caja, vuelve a intentarlo ingresando a cierre de caja de nuevo. \n(Ojo aun compras y ventas esta abierto.)");
                         continue; // este continue hace que despues de almacenar mas dinero de lo que tenemos en caja, no cierre la caja, para que el usuario vuelva a ingresar a cierre de caja y vuelva a ingresar de nuevo y monto factible.
                     } else { // si no, el deposito se realizara.
                         caja = caja - deposito;

@@ -22,11 +22,21 @@ public class Umana_Roy_Proyecto1_Q3 {
         // uso del Scanner para ingresar informacion al programa
         // uso del useDelimiter para ingresar mas informacion despues de un espacio desde el teclado.
         Scanner lea = new Scanner(System.in).useDelimiter("\n");
-        LocalDate fecha = LocalDate.now();
+        LocalDate fecha = LocalDate.now(); // codigo para la fecha de ahora.
 
         // la bienvenida a la tienda.
         System.out.println("Bienvenido a la tienda Roy's aqui vendemos los siguientes productos: Azucar, Avena, Trigo, Maiz.");
         System.out.println("Por favor, abra la caja para comenzar con las ventas y la compras.");
+        
+        System.out.println("\n");
+        System.out.println("                        AVISO!!!!                            ");
+        System.out.println(" __________________________________________________________________");
+        System.out.println(" |-> Tenenemos una super Promocion!!!                             |");
+        System.out.println(" |________________________________________________________________|");
+        System.out.println(" |-> Si pagas 1,000 Lempiras tendras un descuento del (5%) !!!!!! |");
+        System.out.println(" |-> Y si pagas 5,000 Lempiras tendras el (10%) de descuento!!!!! |");
+        System.out.println(" ------------------------------------------------------------------");
+        System.out.println("\n");
 
         // variable para ingresar al menu
         int opcionMenu = 0;
@@ -398,20 +408,22 @@ public class Umana_Roy_Proyecto1_Q3 {
                                 VentasMaizRanking = VentasMaizRanking + CantidadKiloVenta;
                             }
 
-                            // se suma lo que tenemos en caja por vender.
-                            caja += TotalaPagar;
-
                             // aqui se calcula lo del volumen de venta
                             VolumenTotalVenta += TotalaPagar;
-
-                            // el valor medio de ventas es igual Volumenmedioventas entre el numero de ventas que se hizo.
-                            ValorMedioVentas = VolumenTotalVenta / numeroVentas;
 
                             // aqui se calcula con un condicional, si el TotalaPagar es mayor al mayorGananciaVenta,
                             // entonces MayorGananciaventa es igual al TotalaPagar.
                             if (TotalaPagar > MayorGananciaVenta) {
                                 MayorGananciaVenta = TotalaPagar;
                             }
+
+                            numeroVentas++; // aqui se cuenta el numero de ventas que se han hecho.
+
+                            // el valor medio de ventas es igual Volumenmedioventas entre el numero de ventas que se hizo.
+                            ValorMedioVentas = VolumenTotalVenta / numeroVentas;
+
+                            // se suma lo que tenemos en caja por vender.
+                            caja += TotalaPagar;
 
                             // condiciones para el producto Estrella.
                             if (CantidadKiloVenta > maxKilos) { // si el kg de venta, es mayor, entonces maxkilos es igual al Nombre del Producto de venta
@@ -427,8 +439,6 @@ public class Umana_Roy_Proyecto1_Q3 {
                                 maxKilos = CantidadKiloVenta;
                                 productoEstrella = NombreProductoVenta;
                             }
-
-                            numeroVentas++; // aqui se cuenta el numero de ventas que se han hecho.
 
                             // no puede comprar si el usuario elige un proveedor que no pueda comprar un producto en especifico.
                         } else {
@@ -711,7 +721,6 @@ public class Umana_Roy_Proyecto1_Q3 {
                     caja = Math.round(caja * 100.0) / 100.0;
                     VolumenTotalCompra = Math.round(VolumenTotalCompra * 100.0) / 100.0;
                     VolumenTotalVenta = Math.round(VolumenTotalVenta * 100.0) / 100.0;
-
                     ValorMedioCompras = Math.round(ValorMedioCompras * 100.0) / 100.0;
                     ValorMedioVentas = Math.round(ValorMedioVentas * 100.0) / 100.0;
                     MayorGananciaVenta = Math.round(MayorGananciaVenta * 100.0) / 100.0;
@@ -721,6 +730,8 @@ public class Umana_Roy_Proyecto1_Q3 {
                     double MargenGanancia = VolumenTotalVenta - VolumenTotalCompra;
                     double MargenPerdidada = VolumenTotalVenta - VolumenTotalCompra;
 
+                    MargenGanancia = Math.round(MargenGanancia * 100.0) / 100.0;
+                    MargenPerdidada = Math.round(MargenPerdidada * 100.0) / 100.0;
                     // Mensajes que saldran en margen de perdida y de ganancias
                     String MensajeMargenGanancia;
                     String MensajeMargenperdida;

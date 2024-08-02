@@ -6,6 +6,7 @@ package umana_roy_proyecto1_q3;
 
 //LIBRERIA SCANNER    
 import java.util.Scanner;
+import java.time.LocalDate;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Umana_Roy_Proyecto1_Q3 {
         // uso del Scanner para ingresar informacion al programa
         // uso del useDelimiter para ingresar mas informacion despues de un espacio desde el teclado.
         Scanner lea = new Scanner(System.in).useDelimiter("\n");
+        LocalDate fecha = LocalDate.now();
 
         // la bienvenida a la tienda.
         System.out.println("Bienvenido a la tienda Roy's aqui vendemos los siguientes productos: Azucar, Avena, Trigo, Maiz.");
@@ -80,7 +82,7 @@ public class Umana_Roy_Proyecto1_Q3 {
         boolean cajaAbierta = false;
 
         // primer inicio, esta variable me ayuda a que despues de abrir la caja por primera vez,
-        // este sale true, despues de una segunda entrada se convertira en falso, entonces ya no pedira cuanto hay que ingresar en caja.
+        // este sale true, despues de una segunda entrada se convertira en falso, entonces ya no pedira cuanto de efectivo hay que ingresar en caja.
         boolean primerInicio = true;
 
         // uso del while con 6 opciones
@@ -94,7 +96,7 @@ public class Umana_Roy_Proyecto1_Q3 {
             System.out.println("|3. Compras               |");
             System.out.println("|4. Reportes del dia      |");
             System.out.println("|5. Cierre de caja        |");
-            System.out.println("|6. Salir de sistema      |");
+            System.out.println("|6. Salir del sistema     |");
             System.out.println("---------------------------");
             System.out.println("Ingrese una opcion: ");
             opcionMenu = lea.nextInt();
@@ -111,7 +113,11 @@ public class Umana_Roy_Proyecto1_Q3 {
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
             if (opcionMenu == 1) {
+                // este hace que despues de ingresar a caja se sumen los dias.
+                fecha = fecha.plusDays(1);
+                caja = Math.round(caja * 100.0) / 100.0;
                 System.out.println("A ingresado a caja.");
+                System.out.println("\nBienvenido usuario!!, la fecha de hoy es: " + fecha + " Comenzamos con: " + caja + " Lps.");
                 System.out.println("----------------------------------------------------------");
                 // es true por que la caja abre.
                 cajaAbierta = true;
@@ -136,8 +142,10 @@ public class Umana_Roy_Proyecto1_Q3 {
                     primerInicio = false; //despues del primer inicio cambia a falso
 
                 }
-                // sale del bucle del primer inicion y sale lo que esta en pantalla.
+
+                // el math.round se usara para redondear lo que salga de efectivo con 2 decimales.
                 caja = Math.round(caja * 100.0) / 100.0;
+                // sale del bucle del primer inicio y sale lo que esta en pantalla.
                 System.out.println("Caja abierta con: " + caja + " Lps.");
                 System.out.println("----------------------------------------------------------");
 
@@ -313,26 +321,29 @@ public class Umana_Roy_Proyecto1_Q3 {
                                 // suficientes kilogramos por ahora, vuelve a preguntar que otro producto quiere 
                             }
 
+                            // calcular primero el subtotal.
+                            double TotalProductoVenta = CantidadKiloVenta * PrecioProducto;
+                            subTotalVenta = TotalProductoVenta;
+
                             // condicional para el descuento.
                             // si el subtotal sale con 1000, tendra un descuento del 5%
-                            if (subTotalVenta >= 1000) {
-                                Descuento = 0.05;
-                                // si no si, el subtotal sale con 5000, tendra un descuento del 10%
-                            } else if (subTotalVenta > 5000) {
+                            if (subTotalVenta >= 5000) {
                                 Descuento = 0.10;
+                                // si no si, el subtotal sale con 5000, tendra un descuento del 10%
+                            } else if (subTotalVenta >= 1000) {
+                                Descuento = 0.05;
                             } else {
                                 // si no, no tendra ningun descuento.
                                 Descuento = 0.0;
                             }
 
-                            // aqui se hace los calculos  de los descuentos, impuestos y del subtotal.
-                            double TotalProductoVenta = CantidadKiloVenta * PrecioProducto;
-                            subTotalVenta = TotalProductoVenta;
+                            // aqui se hace los calculos  de los descuentos, impuestos. 
                             double DescuentoAplicado = subTotalVenta * Descuento;
                             double SubtotalDespuesDescuento = subTotalVenta - DescuentoAplicado;
                             double ImpuestoAplicado = SubtotalDespuesDescuento * Impuesto;
-                            ImpuestoAplicado = Math.round(ImpuestoAplicado * 100.0) / 100.0; // redondea a dos decimales
                             double TotalaPagar = SubtotalDespuesDescuento + ImpuestoAplicado;
+
+                            String MensajeDescuento = (subTotalVenta >= 5000) ? "(10%)" : (subTotalVenta >= 1000) ? "(5%)" : "(0%)";
 
                             if (!ProductosCompradosVenta.isEmpty()) {
                                 // aqui se agrega una coma en productoscompradoscompra.
@@ -347,9 +358,9 @@ public class Umana_Roy_Proyecto1_Q3 {
 
                             PrecioProducto = Math.round(PrecioProducto * 100.0) / 100.0;
                             subTotalVenta = Math.round(subTotalVenta * 100.0) / 100.0;
-                            DescuentoAplicado = Math.round(DescuentoAplicado * 100.0) / 100.0;
                             ImpuestoAplicado = Math.round(ImpuestoAplicado * 100.0) / 100.0;
                             TotalaPagar = Math.round(TotalaPagar * 100.0) / 100.0;
+                            SubtotalDespuesDescuento = Math.round(SubtotalDespuesDescuento * 100.0) / 100.0;
 
                             // se muestran los detalles de la venta.
                             System.out.println("\n------------------------------Detalles de la venta---------------------------------");
@@ -359,7 +370,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                             System.out.println("Cantidad de kilogramo " + CantidadKiloVenta + " Kg.");
                             System.out.println("Precio por Kg " + PrecioProducto + " Lps.");
                             System.out.println("Subtotal: " + subTotalVenta + " Lps.");
-                            System.out.println("Descuento: " + DescuentoAplicado + "Lps.");
+                            System.out.println("Descuento: " + MensajeDescuento + " " + DescuentoAplicado + "Lps.");
                             System.out.println("Subtotal despues de descuento: " + SubtotalDespuesDescuento + " Lps.");
                             System.out.println("Impuesto (7%): " + ImpuestoAplicado + " Lps.");
                             System.out.println("Total a Pagar. " + TotalaPagar + " Lps.");
@@ -706,14 +717,49 @@ public class Umana_Roy_Proyecto1_Q3 {
                     MayorGananciaVenta = Math.round(MayorGananciaVenta * 100.0) / 100.0;
                     MayorGastoCompra = Math.round(MayorGastoCompra * 100.0) / 100.0;
 
+                    // calculamos el margen de ganacia.
+                    double MargenGanancia = VolumenTotalVenta - VolumenTotalCompra;
+                    double MargenPerdidada = VolumenTotalVenta - VolumenTotalCompra;
+
+                    // Mensajes que saldran en margen de perdida y de ganancias
+                    String MensajeMargenGanancia;
+                    String MensajeMargenperdida;
+
+                    // lo hize con condicionales
+                    // si el margen de ganancia es mayor a 0, entonces saldra este mensaje.
+                    if (MargenGanancia > 0) {
+                        MensajeMargenGanancia = "Ganancias: " + MargenGanancia + " Lps.";
+
+                        // si no si, el margen es menor o igual a 0, entonces saldra este mensaje.
+                    } else if (MargenGanancia <= 0) {
+                        MensajeMargenGanancia = "Lastimosamente no tuvimos ganancias";
+                        // si no es asi, saldra este mensaje.
+                    } else {
+                        MensajeMargenGanancia = "No hubo ni ganancias ni pérdidas";
+                    }
+
+                    // si el margen de perdida es menor a 0, entonces saldra este mensaje.
+                    if (MargenPerdidada < 0) {
+                        MensajeMargenperdida = "Perdidas: " + MargenPerdidada + " Lps.";
+                        // si no si, el margen de perdida es mayor que cero, entonces saldra este mensaje.
+                    } else if (MargenPerdidada > 0) {
+                        MensajeMargenperdida = "No tuvimos Perdidas.";
+                        // si no, saldra este mensaje.
+                    } else {
+                        MensajeMargenperdida = "No hubo ni ganancias ni pérdidas";
+                    }
+
                     // aqui se muestra en consola lo que es los reportes.
                     System.out.println("-----------------------Reportes-----------------------");
+                    System.out.println("Reportes de la fecha: " + fecha);
+                    System.out.println("------------------------------------------------------");
                     System.out.println("Cantidad Actual en caja : " + caja + " Lps.");
                     System.out.println("Numero de compras realizadas durante el dia: " + numeroCompras);
                     System.out.println("Numero de ventas realizadas durante el dia: " + numeroVentas);
                     System.out.println("Volumen total gastado en compras: " + VolumenTotalCompra + " Lps.");
                     System.out.println("Volumen efectuadas en ventas: " + VolumenTotalVenta + " Lps.");
-                    System.out.println("Margen de ganancia: " + (VolumenTotalVenta - VolumenTotalCompra) + " Lps.");
+                    System.out.println("Margen de ganancia: " + MensajeMargenGanancia);
+                    System.out.println("Margen de perdida: " + MensajeMargenperdida);
                     System.out.println("Volumen medio de compras: " + ValorMedioCompras + " Lps.");
                     System.out.println("Volumen medio de ventas: " + ValorMedioVentas + " Lps.");
                     System.out.println("La venta con mayor ganancia realizada: " + MayorGananciaVenta + " Lps.");
@@ -956,7 +1002,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                     // la caja se cierra = a falso.
                     cajaAbierta = false;
                     System.out.println("Caja Cerrada.");
-                    System.out.println("Todos los productos se han reiniciado a cero, si quiere volver a comenzar, dele abrir caja.");
+                    System.out.println("Todos los productos se han reiniciado a cero, si quiere volver a comenzar, dele 'abrir caja'.");
 
                     // aqui se llaman de vuelta a todas la variables inicializadas en cero
                     // para que todos los contadores se reinicien y vuelvan a cero.

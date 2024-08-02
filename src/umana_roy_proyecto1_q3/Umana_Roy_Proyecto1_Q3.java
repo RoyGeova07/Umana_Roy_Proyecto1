@@ -579,7 +579,7 @@ public class Umana_Roy_Proyecto1_Q3 {
 
                             // se muestra en pantalla el producto que selecciono el usuario con su respectivo codigo.
                             System.out.println("\n-----------------------------------------------------------------------------------");
-                            System.out.println("El producto que usted selecciono es: " + CodigoProductoCompra + " " + NombreProductoCompra);
+                            System.out.println("El producto que usted selecciono es: " + NombreProductoCompra);
                             // aqui se ingresa por el usuario la cantidad de kilogramos que desea comprar
                             System.out.println("-----------------------------------------------------------------------------------");
                             System.out.println("Ingrese la cantidad de kilogramos que desea comprar: ");
@@ -686,6 +686,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                             } else {
                                 // si no hay suficiente dinero en la caja, no se peude comprar.
                                 System.out.println("\nNo se puede pagar compra, por insufisiencia monetaria.");
+                                break;
                             }
                         } else {
                             // proveedor no vende dicho producto, y el poderComprar se vuelve falso.

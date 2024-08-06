@@ -30,13 +30,13 @@ public class Umana_Roy_Proyecto1__Q3 {
 
         System.out.println("\n");
         System.out.println("                        AVISO!!!!                            ");
-        System.out.println(" __________________________________________________________________");
-        System.out.println(" |-> Tenenemos una super Promocion!!!                             |");
-        System.out.println(" |________________________________________________________________|");
-        System.out.println(" |-> Si pagas 1,000 Lempiras tendras un descuento del (5%) !!!!!! |");
-        System.out.println(" |-> Y si pagas 5,000 Lempiras tendras el (10%) de descuento!!!!! |");
-        System.out.println(" |-> y si pagas menos de 1,000 lempiras no tendras un descuento!  |");
-        System.out.println(" ------------------------------------------------------------------");
+        System.out.println(" _____________________________________________________________________________________");
+        System.out.println(" |-> Tenenemos una super Promocion en la seccion de ventas!!!                         |");
+        System.out.println(" |____________________________________________________________________________________|");
+        System.out.println(" |-> Si pagas 1,000 o mas Lempiras tendras un descuento del (5%) !!!!!!               |");
+        System.out.println(" |-> Y si pagas 5,000 Lempiras o mas tendras el (10%) de descuento!!!!!               |");
+        System.out.println(" |-> y si pagas menos de 1,000 lempiras no tendras un descuento!                      |");
+        System.out.println(" --------------------------------------------------------------------------------------");
         System.out.println("\n");
 
         // variable para ingresar al menu
@@ -57,7 +57,7 @@ public class Umana_Roy_Proyecto1__Q3 {
         double PrecioUnitario;
         double PrecioUnitarioSumado;
         double CantidadKiloVentaTotal = 0;
-        double Totaltotal = 0;
+        double Totaltotal = 0; // este ayuda como memoria para guardar el total de ventas
 
         // variable como espacio en memoria para el numero de ventas.
         int numeroVentas = 0;
@@ -416,17 +416,17 @@ public class Umana_Roy_Proyecto1__Q3 {
 
                             // condiciones para el producto Estrella.
                             if (CantidadKiloVenta > maxKilos) { // si el kg de venta, es mayor, entonces maxkilos es igual al Nombre del Producto de venta
+                                productoEstrella = NombreProductoVenta;  // maxKilos = CantidadKiloVenta;
                                 maxKilos = CantidadKiloVenta;
-                                productoEstrella = NombreProductoVenta;
                             } else if (CantidadKiloVenta > maxKilos) {
-                                maxKilos = CantidadKiloVenta;
                                 productoEstrella = NombreProductoVenta;
+                               maxKilos = CantidadKiloVenta;
                             } else if (CantidadKiloVenta > maxKilos) {
-                                maxKilos = CantidadKiloVenta;
-                                productoEstrella = NombreProductoVenta;
+                               productoEstrella = NombreProductoVenta;
+                               maxKilos = CantidadKiloVenta;
                             } else if (CantidadKiloVenta > maxKilos) {
-                                maxKilos = CantidadKiloVenta;
                                 productoEstrella = NombreProductoVenta;
+                                maxKilos = CantidadKiloVenta;
                             }
 
                             // no puede comprar si el usuario elige un proveedor que no pueda comprar un producto en especifico.
@@ -470,6 +470,7 @@ public class Umana_Roy_Proyecto1__Q3 {
                             System.out.println("Descuento: " + MensajeDescuento + " " + DescuentoAplicado + " Lps.");
                             System.out.println("Subtotal despues de descuento: " + SubtotalDespuesDescuento + " Lps.");
                             System.out.println("Impuesto (7%): " + ImpuestoAplicado + " Lps.");
+                            caja = Math.round(caja * 100.0) / 100.0;
                             System.out.println("Total a pagar: " + TotalaPagar + " Lps.");
                             System.out.println("___________________________________________________________________________________");
 
@@ -749,7 +750,8 @@ public class Umana_Roy_Proyecto1__Q3 {
                             System.out.println("-----------------------------FACTURACION---------------------------------------");
                             System.out.println("Lista de productos Comprados: " + ProductosCompradosCompra);
                             System.out.println("Cantidad Total de kilogramos comprados: " + CantidadKiloCompraTotal + " (" + ProductosCompradosCompra + ")");
-                            System.out.println("Total compra: " + TotalCompra+ "por los productos: "+ " ("+ProductosCompradosCompra+")");
+                            System.out.println("Total compra: " + TotalCompra+ " por los productos: "+ " ("+ProductosCompradosCompra+")");
+                            caja = Math.round(caja * 100.0) / 100.0;
                             System.out.println("Actual en caja: " + caja);
                             System.out.println("_______________________________________________________________________________");
                         }
@@ -833,7 +835,7 @@ public class Umana_Roy_Proyecto1__Q3 {
                     System.out.println("Volumen medio de ventas: " + ValorMedioVentas + " Lps.");
                     System.out.println("La venta con mayor ganancia realizada: " + MayorGananciaVenta + " Lps.");
                     System.out.println("La compra con mayor gasto realizada: " + MayorGastoCompra + " Lps.");
-                    System.out.println("Producto Estrella: " + productoEstrella + " " + maxKilos + " kg.");
+                    System.out.println("Producto Estrella: " + productoEstrella);
 
                     System.out.println("\nRanking de la lista de productos mas vendidos.");
                     // si la venta de azucar es mayor o igual a la ventas de Avena y las venta de azucar es mayor o igual las ventas de Trigo y venta de azucar es mayor o igual a las ventas de maiz

@@ -1,0 +1,366 @@
+if (VentasAzucarRanking == VentasAvenaRanking && VentasAzucarRanking == VentasTrigoRanking && VentasAzucarRanking == VentasMaizRanking) {
+    System.out.println("1. Azucar");
+    System.out.println("1. Avena");
+    System.out.println("1. Trigo");
+    System.out.println("1. Maiz");
+} else {
+    // Casos en los que al menos uno es mayor
+    if (VentasAzucarRanking >= VentasAvenaRanking && VentasAzucarRanking >= VentasTrigoRanking && VentasAzucarRanking >= VentasMaizRanking) {
+        System.out.println("1. Azucar");
+        if (VentasAvenaRanking >= VentasTrigoRanking && VentasAvenaRanking >= VentasMaizRanking) {
+            System.out.println("2. Avena");
+            if (VentasTrigoRanking >= VentasMaizRanking) {
+                System.out.println("3. Trigo");
+                System.out.println("4. Maiz");
+            } else {
+                System.out.println("3. Maiz");
+                System.out.println("4. Trigo");
+            }
+        } else if (VentasTrigoRanking >= VentasAvenaRanking && VentasTrigoRanking >= VentasMaizRanking) {
+            System.out.println("2. Trigo");
+            if (VentasAvenaRanking >= VentasMaizRanking) {
+                System.out.println("3. Avena");
+                System.out.println("4. Maiz");
+            } else {
+                System.out.println("3. Maiz");
+                System.out.println("4. Avena");
+            }
+        } else {
+            System.out.println("2. Maiz");
+            if (VentasAvenaRanking >= VentasTrigoRanking) {
+                System.out.println("3. Avena");
+                System.out.println("4. Trigo");
+            } else {
+                System.out.println("3. Trigo");
+                System.out.println("4. Avena");
+            }
+        }
+    } else if (VentasAvenaRanking >= VentasAzucarRanking && VentasAvenaRanking >= VentasTrigoRanking && VentasAvenaRanking >= VentasMaizRanking) {
+        System.out.println("1. Avena");
+        if (VentasAzucarRanking >= VentasTrigoRanking && VentasAzucarRanking >= VentasMaizRanking) {
+            System.out.println("2. Azucar");
+            if (VentasTrigoRanking >= VentasMaizRanking) {
+                System.out.println("3. Trigo");
+                System.out.println("4. Maiz");
+            } else {
+                System.out.println("3. Maiz");
+                System.out.println("4. Trigo");
+            }
+        } else if (VentasTrigoRanking >= VentasAzucarRanking && VentasTrigoRanking >= VentasMaizRanking) {
+            System.out.println("2. Trigo");
+            if (VentasAzucarRanking >= VentasMaizRanking) {
+                System.out.println("3. Azucar");
+                System.out.println("4. Maiz");
+            } else {
+                System.out.println("3. Maiz");
+                System.out.println("4. Azucar");
+            }
+        } else {
+            System.out.println("2. Maiz");
+            if (VentasAzucarRanking >= VentasTrigoRanking) {
+                System.out.println("3. Azucar");
+                System.out.println("4. Trigo");
+            } else {
+                System.out.println("3. Trigo");
+                System.out.println("4. Azucar");
+            }
+        }
+    } else if (VentasTrigoRanking >= VentasAzucarRanking && VentasTrigoRanking >= VentasAvenaRanking && VentasTrigoRanking >= VentasMaizRanking) {
+        System.out.println("1. Trigo");
+        if (VentasAzucarRanking >= VentasAvenaRanking && VentasAzucarRanking >= VentasMaizRanking) {
+            System.out.println("2. Azucar");
+            if (VentasAvenaRanking >= VentasMaizRanking) {
+                System.out.println("3. Avena");
+                System.out.println("4. Maiz");
+            } else {
+                System.out.println("3. Maiz");
+                System.out.println("4. Avena");
+            }
+        } else if (VentasAvenaRanking >= VentasAzucarRanking && VentasAvenaRanking >= VentasMaizRanking) {
+            System.out.println("2. Avena");
+            if (VentasAzucarRanking >= VentasMaizRanking) {
+                System.out.println("3. Azucar");
+                System.out.println("4. Maiz");
+            } else {
+                System.out.println("3. Maiz");
+                System.out.println("4. Azucar");
+            }
+        } else {
+            System.out.println("2. Maiz");
+            if (VentasAzucarRanking >= VentasAvenaRanking) {
+                System.out.println("3. Azucar");
+                System.out.println("4. Avena");
+            } else {
+                System.out.println("3. Avena");
+                System.out.println("4. Azucar");
+            }
+        }
+    } else {
+        System.out.println("1. Maiz");
+        if (VentasAzucarRanking >= VentasAvenaRanking && VentasAzucarRanking >= VentasTrigoRanking) {
+            System.out.println("2. Azucar");
+            if (VentasAvenaRanking >= VentasTrigoRanking) {
+                System.out.println("3. Avena");
+                System.out.println("4. Trigo");
+            } else {
+                System.out.println("3. Trigo");
+                System.out.println("4. Avena");
+            }
+        } else if (VentasAvenaRanking >= VentasAzucarRanking && VentasAvenaRanking >= VentasTrigoRanking) {
+            System.out.println("2. Avena");
+            if (VentasAzucarRanking >= VentasTrigoRanking) {
+                System.out.println("3. Azucar");
+                System.out.println("4. Trigo");
+            } else {
+                System.out.println("3. Trigo");
+                System.out.println("4. Azucar");
+            }
+        } else {
+            System.out.println("2. Trigo");
+            if (VentasAzucarRanking >= VentasAvenaRanking) {
+                System.out.println("3. Azucar");
+                System.out.println("4. Avena");
+            } else {
+                System.out.println("3. Avena");
+                System.out.println("4. Azucar");
+            }
+        }
+    }
+}
+
+// Casos de empates parciales
+if (VentasAzucarRanking == VentasAvenaRanking && VentasAzucarRanking != VentasTrigoRanking && VentasAzucarRanking != VentasMaizRanking) {
+    if (VentasTrigoRanking == VentasMaizRanking) {
+        System.out.println("1. Azucar");
+        System.out.println("1. Avena");
+        System.out.println("3. Trigo");
+        System.out.println("3. Maiz");
+    } else if (VentasAzucarRanking > VentasTrigoRanking && VentasAzucarRanking > VentasMaizRanking) {
+        System.out.println("1. Azucar");
+        System.out.println("1. Avena");
+        if (VentasTrigoRanking > VentasMaizRanking) {
+            System.out.println("3. Trigo");
+            System.out.println("4. Maiz");
+        } else {
+            System.out.println("3. Maiz");
+            System.out.println("4. Trigo");
+        }
+    } else if (VentasTrigoRanking > VentasAzucarRanking) {
+        System.out.println("1. Trigo");
+        if (VentasAzucarRanking > VentasMaizRanking) {
+            System.out.println("2. Azucar");
+            System.out.println("2. Avena");
+            System.out.println("4. Maiz");
+        } else {
+            System.out.println("2. Maiz");
+            System.out.println("3. Azucar");
+            System.out.println("3. Avena");
+        }
+    } else {
+        System.out.println("1. Maiz");
+        if (VentasAzucarRanking > VentasTrigoRanking) {
+            System.out.println("2. Azucar");
+            System.out.println("2. Avena");
+            System.out.println("4. Trigo");
+        } else {
+            System.out.println("2. Trigo");
+            System.out.println("3. Azucar");
+            System.out.println("3. Avena");
+        }
+    }
+} else if (VentasAzucarRanking == VentasTrigoRanking && VentasAzucarRanking != VentasAvenaRanking && VentasAzucarRanking != VentasMaizRanking) {
+    if (VentasAvenaRanking == VentasMaizRanking) {
+        System.out.println("1. Azucar");
+        System.out.println("1. Trigo");
+        System.out.println("3. Avena");
+        System.out.println("3. Maiz");
+    } else if (VentasAzucarRanking > VentasAvenaRanking && VentasAzucarRanking > VentasMaizRanking) {
+        System.out.println("1. Azucar");
+        System.out.println("1. Trigo");
+        if (VentasAvenaRanking > VentasMaizRanking) {
+            System.out.println("3. Avena");
+            System.out.println("4. Maiz");
+        } else {
+            System.out.println("3. Maiz");
+            System.out.println("4. Avena");
+        }
+    } else if (VentasAvenaRanking > VentasAzucarRanking) {
+        System.out.println("1. Avena");
+        if (VentasAzucarRanking > VentasMaizRanking) {
+            System.out.println("2. Azucar");
+            System.out.println("2. Trigo");
+            System.out.println("4. Maiz");
+        } else {
+            System.out.println("2. Maiz");
+            System.out.println("3. Azucar");
+            System.out.println("3. Trigo");
+        }
+    } else {
+        System.out.println("1. Maiz");
+        if (VentasAzucarRanking > VentasAvenaRanking) {
+            System.out.println("2. Azucar");
+            System.out.println("2. Trigo");
+            System.out.println("4. Avena");
+        } else {
+            System.out.println("2. Avena");
+            System.out.println("3. Azucar");
+            System.out.println("3. Trigo");
+        }
+    }
+} else if (VentasAzucarRanking == VentasMaizRanking && VentasAzucarRanking != VentasAvenaRanking && VentasAzucarRanking != VentasTrigoRanking) {
+    if (VentasAvenaRanking == VentasTrigoRanking) {
+        System.out.println("1. Azucar");
+        System.out.println("1. Maiz");
+        System.out.println("3. Avena");
+        System.out.println("3. Trigo");
+    } else if (VentasAzucarRanking > VentasAvenaRanking && VentasAzucarRanking > VentasTrigoRanking) {
+        System.out.println("1. Azucar");
+        System.out.println("1. Maiz");
+        if (VentasAvenaRanking > VentasTrigoRanking) {
+            System.out.println("3. Avena");
+            System.out.println("4. Trigo");
+        } else {
+            System.out.println("3. Trigo");
+            System.out.println("4. Avena");
+        }
+    } else if (VentasAvenaRanking > VentasAzucarRanking) {
+        System.out.println("1. Avena");
+        if (VentasAzucarRanking > VentasTrigoRanking) {
+            System.out.println("2. Azucar");
+            System.out.println("2. Maiz");
+            System.out.println("4. Trigo");
+        } else {
+            System.out.println("2. Trigo");
+            System.out.println("3. Azucar");
+            System.out.println("3. Maiz");
+        }
+    } else {
+        System.out.println("1. Trigo");
+        if (VentasAzucarRanking > VentasAvenaRanking) {
+            System.out.println("2. Azucar");
+            System.out.println("2. Maiz");
+            System.out.println("4. Avena");
+        } else {
+            System.out.println("2. Avena");
+            System.out.println("3. Azucar");
+            System.out.println("3. Maiz");
+        }
+    }
+} else if (VentasAvenaRanking == VentasTrigoRanking && VentasAvenaRanking != VentasAzucarRanking && VentasAvenaRanking != VentasMaizRanking) {
+    if (VentasAzucarRanking == VentasMaizRanking) {
+        System.out.println("1. Avena");
+        System.out.println("1. Trigo");
+        System.out.println("3. Azucar");
+        System.out.println("3. Maiz");
+    } else if (VentasAvenaRanking > VentasAzucarRanking && VentasAvenaRanking > VentasMaizRanking) {
+        System.out.println("1. Avena");
+        System.out.println("1. Trigo");
+        if (VentasAzucarRanking > VentasMaizRanking) {
+            System.out.println("3. Azucar");
+            System.out.println("4. Maiz");
+        } else {
+            System.out.println("3. Maiz");
+            System.out.println("4. Azucar");
+        }
+    } else if (VentasAzucarRanking > VentasAvenaRanking) {
+        System.out.println("1. Azucar");
+        if (VentasAvenaRanking > VentasMaizRanking) {
+            System.out.println("2. Avena");
+            System.out.println("2. Trigo");
+            System.out.println("4. Maiz");
+        } else {
+            System.out.println("2. Maiz");
+            System.out.println("3. Avena");
+            System.out.println("3. Trigo");
+        }
+    } else {
+        System.out.println("1. Maiz");
+        if (VentasAvenaRanking > VentasAzucarRanking) {
+            System.out.println("2. Avena");
+            System.out.println("2. Trigo");
+            System.out.println("4. Azucar");
+        } else {
+            System.out.println("2. Azucar");
+            System.out.println("3. Avena");
+            System.out.println("3. Trigo");
+        }
+    }
+} else if (VentasAvenaRanking == VentasMaizRanking && VentasAvenaRanking != VentasAzucarRanking && VentasAvenaRanking != VentasTrigoRanking) {
+    if (VentasAzucarRanking == VentasTrigoRanking) {
+        System.out.println("1. Avena");
+        System.out.println("1. Maiz");
+        System.out.println("3. Azucar");
+        System.out.println("3. Trigo");
+    } else if (VentasAvenaRanking > VentasAzucarRanking && VentasAvenaRanking > VentasTrigoRanking) {
+        System.out.println("1. Avena");
+        System.out.println("1. Maiz");
+        if (VentasAzucarRanking > VentasTrigoRanking) {
+            System.out.println("3. Azucar");
+            System.out.println("4. Trigo");
+        } else {
+            System.out.println("3. Trigo");
+            System.out.println("4. Azucar");
+        }
+    } else if (VentasAzucarRanking > VentasAvenaRanking) {
+        System.out.println("1. Azucar");
+        if (VentasAvenaRanking > VentasTrigoRanking) {
+            System.out.println("2. Avena");
+            System.out.println("2. Maiz");
+            System.out.println("4. Trigo");
+        } else {
+            System.out.println("2. Trigo");
+            System.out.println("3. Avena");
+            System.out.println("3. Maiz");
+        }
+    } else {
+        System.out.println("1. Trigo");
+        if (VentasAvenaRanking > VentasAzucarRanking) {
+            System.out.println("2. Avena");
+            System.out.println("2. Maiz");
+            System.out.println("4. Azucar");
+        } else {
+            System.out.println("2. Azucar");
+            System.out.println("3. Avena");
+            System.out.println("3. Maiz");
+        }
+    }
+} else if (VentasTrigoRanking == VentasMaizRanking && VentasTrigoRanking != VentasAzucarRanking && VentasTrigoRanking != VentasAvenaRanking) {
+    if (VentasAzucarRanking == VentasAvenaRanking) {
+        System.out.println("1. Trigo");
+        System.out.println("1. Maiz");
+        System.out.println("3. Azucar");
+        System.out.println("3. Avena");
+    } else if (VentasTrigoRanking > VentasAzucarRanking && VentasTrigoRanking > VentasAvenaRanking) {
+        System.out.println("1. Trigo");
+        System.out.println("1. Maiz");
+        if (VentasAzucarRanking > VentasAvenaRanking) {
+            System.out.println("3. Azucar");
+            System.out.println("4. Avena");
+        } else {
+            System.out.println("3. Avena");
+            System.out.println("4. Azucar");
+        }
+    } else if (VentasAzucarRanking > VentasTrigoRanking) {
+        System.out.println("1. Azucar");
+        if (VentasTrigoRanking > VentasAvenaRanking) {
+            System.out.println("2. Trigo");
+            System.out.println("2. Maiz");
+            System.out.println("4. Avena");
+        } else {
+            System.out.println("2. Avena");
+            System.out.println("3. Trigo");
+            System.out.println("3. Maiz");
+        }
+    } else {
+        System.out.println("1. Avena");
+        if (VentasTrigoRanking > VentasAzucarRanking) {
+            System.out.println("2. Trigo");
+            System.out.println("2. Maiz");
+            System.out.println("4. Azucar");
+        } else {
+            System.out.println("2. Azucar");
+            System.out.println("3. Trigo");
+            System.out.println("3. Maiz");
+        }
+    }
+}

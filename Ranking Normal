@@ -1,0 +1,196 @@
+// si la venta de azucar es mayor o igual a la ventas de Avena y las venta de azucar es mayor o igual las ventas de Trigo y venta de azucar es mayor o igual a las ventas de maiz
+                    // entonces el azucar el azucar sera el primero del ranking.
+                    if (VentasAzucarRanking >= VentasAvenaRanking && VentasAzucarRanking >= VentasTrigoRanking && VentasAzucarRanking >= VentasMaizRanking) {
+                        System.out.println("1. Azucar: " + VentasAzucarRanking + " kg.");
+                        // si la venta de avena es mayor igual a las ventas de trigo y la venta de avena es mayor igual a las ventas de avena es mayor igual a las ventas de maiz
+                        // entonces la avena sera el segundo lugar del ranking.
+                        if (VentasAvenaRanking >= VentasTrigoRanking && VentasAvenaRanking >= VentasMaizRanking) {
+                            System.out.println("2. Avena: " + VentasAvenaRanking + "kg.");
+                            // si la ventas de trigo es mayor igual a las ventas de maiz 
+                            // entonces el trigo sera el 3 lugar del ranking y el maiz sera 4 lugar.
+                            if (VentasTrigoRanking >= VentasMaizRanking) {
+                                System.out.println("3. Trigo: " + VentasTrigoRanking + " kg.");
+                                System.out.println("4. Maiz: " + VentasMaizRanking + " kg.");
+                            } else {
+                                // si no es el trigo 3 lugar y el maiz 4 lugar entones, el maiz sera 3 lugar y el trigo sera 4 lugar.
+                                System.out.println("3. Maiz: " + VentasMaizRanking + " kg.");
+                                System.out.println("4. Trigo: " + VentasTrigoRanking + " kg.");
+                            }
+                            // si no si, la avena es segundo lugar entonces, las ventas de trigo es mayor igual a las ventas de avena y las ventas de trigo son mayor igual a las ventas  de maiz
+                            // entonces el trigo sera el 2 lugar.
+                        } else if (VentasTrigoRanking >= VentasAvenaRanking && VentasTrigoRanking >= VentasMaizRanking) {
+                            System.out.println("2. Trigo: " + VentasTrigoRanking + " kg.");
+                            // si las ventas de avena son mayor igual a las ventas de maiz 
+                            // entonces la avena sera el 3 lugar y el maiz sera 4 lugar.
+                            if (VentasAvenaRanking >= VentasMaizRanking) {
+                                System.out.println("3. Avena: " + VentasAvenaRanking + " kg.");
+                                System.out.println("4. Maiz: " + VentasMaizRanking + " kg.");
+                            } else {
+                                // si no es la avena 3 lugar y el maiz 4 lugar entonces, el maiz sera 3 lugar y la avena sera 4 lugar.
+                                System.out.println("3. Maiz: " + VentasMaizRanking + " kg.");
+                                System.out.println("4. Avena: " + VentasAvenaRanking + " kg.");
+                            }
+                        } else {
+                            // si no es el trigo 2 lugar entonces, sera el maiz 2 lugar.
+                            System.out.println("2. Maiz: " + VentasMaizRanking + " kg.");
+                            // si las ventas de avena son mayor igual a las ventas de trigo
+                            // entonces la avena sera 3 lugar y el trigo sera 4 lugar.
+                            if (VentasAvenaRanking >= VentasTrigoRanking) {
+                                System.out.println("3. Avena: " + VentasAvenaRanking + " kg.");
+                                System.out.println("4. Trigo: " + VentasTrigoRanking + " kg.");
+                            } else {
+                                // si no es la avena 3 lugar y la avena 4 lugar entonces, el trigo sera 3 lugar y la avena sera 4 lugar.
+                                System.out.println("3. Trigo: " + VentasTrigoRanking + " kg.");
+                                System.out.println("4. Avena: " + VentasAvenaRanking + " kg.");
+                            }
+                        }
+                        // si no si, el azucar es 1 lugar, entonces, sera la avena, si las ventas de avena son mayor igual a las ventas de azucar, y las ventas de avena son mayor igual a las ventas de trigo, y las ventas de avena son mayor igual a las ventas de maiz,
+                        // entonces la avena es 1 lugar.
+                    } else if (VentasAvenaRanking >= VentasAzucarRanking && VentasAvenaRanking >= VentasTrigoRanking && VentasAvenaRanking >= VentasMaizRanking) {
+                        System.out.println("1. Avena: " + VentasAvenaRanking + " kg.");
+                        // si las ventas de azucar son mayor igual a las ventas de trigo, y las ventas de azucar son mayor igual a las ventas de maiz,
+                        // entonces la azucar sera 2 lugar.
+                        if (VentasAzucarRanking >= VentasTrigoRanking && VentasAzucarRanking >= VentasMaizRanking) {
+                            System.out.println("2. Azucar: " + VentasAzucarRanking + " kg.");
+                            // si las ventas de trigo son mayor igual a las ventas de maiz,
+                            // entonces el trigo sera 3 lugar y el maiz sera 4 lugar.
+                            if (VentasTrigoRanking >= VentasMaizRanking) {
+                                System.out.println("3. Trigo: " + VentasTrigoRanking + " kg.");
+                                System.out.println("4. Maiz: " + VentasMaizRanking + " kg.");
+                            } else {
+                                // si no es el trigo 3 lugar y el maiz 4 lugar,
+                                // entonces el maiz sera 3 lugar y el trigo sera 4 lugar.
+                                System.out.println("3. Maiz: " + VentasMaizRanking + " kg.");
+                                System.out.println("4. Trigo: " + VentasTrigoRanking + " kg.");
+                            }
+                            // si no si el azucar es 2 lugar, entonces sera el trigo, si las ventas de trigo son mayor igual a las de azucar, y las ventas de trigo son mayor igual a las ventas de maiz,
+                            // entonces sera el trigo 2 lugar.
+                        } else if (VentasTrigoRanking >= VentasAzucarRanking && VentasTrigoRanking >= VentasMaizRanking) {
+                            System.out.println("2. Trigo: " + VentasTrigoRanking + " kg.");
+                            // si las ventas de azucar son mayores o igual a las ventas de maiz,
+                            // entonces el azucar sera 3 lugar y el maiz sera 4 lugar.
+                            if (VentasAzucarRanking >= VentasMaizRanking) {
+                                System.out.println("3. Azucar: " + VentasAzucarRanking + "kg.");
+                                System.out.println("4. Maiz: " + VentasMaizRanking + " kg.");
+                            } else {
+                                // si no es el azucar 3 lugar y el maiz 4 lugar,
+                                // entonces sera el maiz sera 3 lugar y el azucar sera 4 lugar.
+                                System.out.println("3. Maiz: " + VentasMaizRanking + " kg.");
+                                System.out.println("4. Azucar: " + VentasAzucarRanking + " kg.");
+                            }
+                        } else {
+                            // si no es trigo 2 lugar, entonces sera el maiz.
+                            System.out.println("2. Maiz: " + VentasMaizRanking + " kg.");
+                            // si las ventas de azucar son mayores o iguales a las ventas de trigo,
+                            // entonces azucar sera 3 lugar y el trigo sera 4 lugar.
+                            if (VentasAzucarRanking >= VentasTrigoRanking) {
+                                System.out.println("3. Azucar: " + VentasAzucarRanking + " kg.");
+                                System.out.println("4. Trigo: " + VentasTrigoRanking + " kg.");
+                            } else {
+                                // si no es azucar el 3 lugar y trigo 4 lugar,
+                                // entonces 3 sera 3 lugar y el azucar sera 4.
+                                System.out.println("3. Trigo: " + VentasTrigoRanking + " kg.");
+                                System.out.println("4. Azucar: " + VentasAzucarRanking + " kg.");
+                            }
+                        }
+                        // si no si es avena 1 lugar, entonces sera trigo, entonces,
+                        // si las ventas de trigo son mayor o igual a las ventas de Azucar, y si las ventas de trigo son mayor o igual a las ventas de avena, y si las ventas de trigo son mayor o igual a las ventas de maiz
+                        // entonces trigo sera el 1 lugar del ranking.
+                    } else if (VentasTrigoRanking >= VentasAzucarRanking && VentasTrigoRanking >= VentasAvenaRanking && VentasTrigoRanking >= VentasMaizRanking) {
+                        System.out.println("1. Trigo: " + VentasTrigoRanking + " kg");
+                        // si las ventas de azucar son mayor o igual a las ventas de avena y  si las ventas de azucar son mayor o igual a las ventas del maiz,
+                        // entonces el azucar sera el 2 lugar del ranking.
+                        if (VentasAzucarRanking >= VentasAvenaRanking && VentasAzucarRanking >= VentasMaizRanking) {
+                            System.out.println("2. Azucar: " + VentasAzucarRanking + " kg");
+                            // si las ventas de Avena mayor o igual a las ventas del maiz,
+                            // entonces la avena sera 3 lugar y el maiz sera el 4 lugar del ranking.
+                            if (VentasAvenaRanking >= VentasMaizRanking) {
+                                System.out.println("3. Avena: " + VentasAvenaRanking + " kg");
+                                System.out.println("4. Maiz: " + VentasMaizRanking + " kg");
+                            } else {
+                                // si no es la avena 3 lugar y el maiz 4 lugar, entonces,
+                                // entonces sera el maiz 3 lugar y la vena 4 lugar.
+                                System.out.println("3. Maiz: " + VentasMaizRanking + " kg");
+                                System.out.println("4. Avena: " + VentasAvenaRanking + " kg");
+                            }
+                            // si no si el azucar es el 2 lugar, entonces sera la avena el 2 lugar, si las ventas de avena es mayor igual que las de ventas de azucar y, si las ventas de avena es mayor igual que las de ventas de maiz,
+                            // entonces sera la avena sera el 2 lugar.
+                        } else if (VentasAvenaRanking >= VentasAzucarRanking && VentasAvenaRanking >= VentasMaizRanking) {
+                            System.out.println("2. Avena: " + VentasAvenaRanking + " kg");
+                            // si la ventas de azucar es mayor igual que las ventas de maiz,
+                            // entonces azucar sera el 3 lugar y el maiz sera el 4 lugar.
+                            if (VentasAzucarRanking >= VentasMaizRanking) {
+                                System.out.println("3. Azucar: " + VentasAzucarRanking + " kg");
+                                System.out.println("4. Maiz: " + VentasMaizRanking + " kg");
+                            } else {
+                                // si no es asi, que la azucar queda en 3 lugar y el maiz en 4,
+                                // entonces el maiz que da en 3 lugar y el azucar en 4 lugar.
+                                System.out.println("3. Maiz: " + VentasMaizRanking + " kg");
+                                System.out.println("4. Azucar: " + VentasAzucarRanking + " kg");
+                            }
+                        } else {
+                            //si no si, la avena es 2 lugar, entonces el maiz sera el 2 lugar,
+                            System.out.println("2. Maiz: " + VentasMaizRanking + " kg");
+                            // si las ventas de azucar son mayores de las ventas de avena,
+                            // entonces la azucar sera el 3 lugar y la avena sera el 4 lugar.
+                            if (VentasAzucarRanking >= VentasAvenaRanking) {
+                                System.out.println("3. Azucar: " + VentasAzucarRanking + " kg");
+                                System.out.println("4. Avena: " + VentasAvenaRanking + " kg");
+                            } else {
+                                // si no es asi, que la azucar sea 3 lugar y la avena 4 lugar,
+                                // entonces la avena sera 3 lugar, y la azucar sera 4 lugar.
+                                System.out.println("3. Avena: " + VentasAvenaRanking + " kg");
+                                System.out.println("4. Azucar: " + VentasAzucarRanking + " kg");
+                            }
+                        }
+                    } else {
+                        // si no es asi, que el trigo sea el 1 lugar del ranking, entonces el maiz sera el 1 lugar.
+                        System.out.println("1. Maiz: " + VentasMaizRanking + " kg");
+                        // si las ventas de azucar son mayor o igual a las ventas de avena y,  si las ventas de azucar son mayor o igual a las ventas de trigo,
+                        // entonces el azucar sera el 2 lugar.
+                        if (VentasAzucarRanking >= VentasAvenaRanking && VentasAzucarRanking >= VentasTrigoRanking) {
+                            System.out.println("2. Azucar: " + VentasAzucarRanking + " kg");
+                            if (VentasAvenaRanking >= VentasTrigoRanking) {
+                                // si las ventas de avena son mayor igual a las de trigo,
+                                // entonces el avena sera el 3 lugar y el trigo, sera el 4 lugar.
+                                System.out.println("3. Avena: " + VentasAvenaRanking + " kg");
+                                System.out.println("4. Trigo: " + VentasTrigoRanking + " kg");
+                            } else {
+                                // si no es asi que, la avena sea 3 lugar y el trigo 4,
+                                // entonces sera el trigo 3 lugar y la avena ultimo lugar.
+                                System.out.println("3. Trigo: " + VentasTrigoRanking + " kg");
+                                System.out.println("4. Avena: " + VentasAvenaRanking + " kg");
+                            }
+                            // si no si que el azucar sea 2 lugar, entonces avena sera 2 lugar, 
+                            // asi que si las ventas de avena son mayor igual que las ventas de azucar y, si las ventas de avena son mayor igual que las ventas de trigo,
+                            // entonces la avena sera el 2 lugar.
+                        } else if (VentasAvenaRanking >= VentasAzucarRanking && VentasAvenaRanking >= VentasTrigoRanking) {
+                            System.out.println("2. Avena: " + VentasAvenaRanking + " kg");
+                            // si las ventas de azucar son mayor igual a las ventas de trigo,
+                            // entonces el azucar sera 3 lugar y el trigo sera el 4 lugar.
+                            if (VentasAzucarRanking >= VentasTrigoRanking) {
+                                System.out.println("3. Azucar: " + VentasAzucarRanking + " kg");
+                                System.out.println("4. Trigo: " + VentasTrigoRanking + " kg");
+                            } else {
+                                // si no es asi, que el azucar sea 3 lugar y el trigo sea 4 lugar,
+                                // entonces el trigo sera 3 y el azucar 4.
+                                System.out.println("3. Trigo: " + VentasTrigoRanking + " kg");
+                                System.out.println("4. Azúcar: " + VentasAzucarRanking + " kg");
+                            }
+                        } else {
+                            // si no es asi que, la avena este en el segundo puesto del ranking,
+                            // entonces, lo sera el trigo.
+                            System.out.println("2. Trigo: " + VentasTrigoRanking + " kg");
+                            // si las ventas de azucar son mayores o iguales a las ventas de avena,
+                            // entonces, azucar quedara en 3 lugar, y la avena quedara en 4 puesto.
+                            if (VentasAzucarRanking >= VentasAvenaRanking) {
+                                System.out.println("3. Azucar: " + VentasAzucarRanking + " kg");
+                                System.out.println("4. Avena: " + VentasAvenaRanking + " kg");
+                            } else {
+                                // si no es asi que, el azucar quede en 3 puesto y el avena en 4,
+                                // entonces, sera lo opuesto avena de 3 lugar y el Azuca de ultimo.
+                                System.out.println("3. Avena: " + VentasAvenaRanking + " kg");
+                                System.out.println("4. Azucar: " + VentasAzucarRanking + " kg");
+                            }
+                        }
+                    }

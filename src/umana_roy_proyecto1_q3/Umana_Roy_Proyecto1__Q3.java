@@ -11,14 +11,15 @@ import java.util.Scanner;
  *
  * @author royum
  */
-public class Umana_Roy_Proyecto1_Q3 {
+public class Umana_Roy_Proyecto1__Q3 {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
 
-         //uso del useDelimiter para ingresar mas informacion despues de un espacio desde el teclado.
+        // uso del Scanner para ingresar informacion al programa
+        // uso del useDelimiter para ingresar mas informacion despues de un espacio desde el teclado.
         Scanner lea = new Scanner(System.in).useDelimiter("\n");
 
         // la bienvenida a la tienda.
@@ -45,7 +46,7 @@ public class Umana_Roy_Proyecto1_Q3 {
         boolean poderComprar = false; // usamos un bolean donde se sepa si se puede comprar o no.
         int CodigoProductoVenta; // este es para poner el codigo del producto 
         double CantidadKiloCompra; // este seria la cantidad de kilogramos para compras.
-        double CantidadKiloVenta; // este seria la cantidad de kilogramos para ventas.
+        double CantidadKiloVenta = 0; // este seria la cantidad de kilogramos para ventas.
         double Descuento = 0; // Variable del descuento.
         int CodigoProductoCompra; // Variable para acceder al Codigo del Producto de la seccion Compra.
         double Impuesto = 0.07; // Variable del impuesto del 7%.
@@ -55,7 +56,6 @@ public class Umana_Roy_Proyecto1_Q3 {
         double Totaltotal = 0; // este ayuda como memoria para guardar el total de ventas
         double DiferenciaCompra;
         int ConfirmacionSeccionCompras; // sirve para preguntarle al usuario si de verdad quiere comprar el producto
-        int ComprarOtraVez = 1;
 
         // variable como espacio en memoria para el numero de ventas.
         int numeroVentas = 0;
@@ -83,21 +83,29 @@ public class Umana_Roy_Proyecto1_Q3 {
         double maxKilos = 0;
         // aqui se guarda el con un string vacio el nombre del producto estrella, el que mas se vendio.
         String productoEstrella = "";
-        String posicion2;
-        String posicion3;
-        String posicion4;
+        String posicion2 = "";
+        String posicion3 = "";
+        String posicion4 = "";
 
         // variables declaradas en 0 para el ranking.
-        double VentasAzucarRanking = 0;
-        double VentasAvenaRanking = 0;
-        double VentasTrigoRanking = 0;
-        double VentasMaizRanking = 0;
+        double cantidad1 = 0;
+        double cantidad2 = 0;
+        double cantidad3 = 0;
+        double cantidad4 = 0;
 
         // variables para mostrar lo vendido en el ranking
         double CantidadVendidaAzucar = 0;
         double CantidadVendidaAvena = 0;
         double CantidadVendidaTrigo = 0;
         double CantidadVendidaMaiz = 0;
+        String producto1 = "Azucar";
+        String producto2 = "Avena";
+        String producto3 = "Trigo";
+        String producto4 = "Maiz";
+        // variables para el interacambio
+        String tempProducto;
+        double tempCantidad;
+        int rank = 1;
 
         // variable que se hace el deposito al banco.
         double deposito;
@@ -108,12 +116,12 @@ public class Umana_Roy_Proyecto1_Q3 {
         // primer inicio, esta variable me ayuda a que despues de abrir la caja por primera vez,
         // este sale true, despues de una segunda entrada se convertira en falso, entonces ya no pedira cuanto de efectivo hay que ingresar en caja.
         boolean primerInicio = true;
-        
+
         String Cerrar_si_no = ""; // string donde si el usuario de verdad quiere cerrar la caja.
         double DescuentoAplicado = 0;
         double SubtotalDespuesDescuento = 0;
         double ImpuestoAplicado = 0;
-        double TotalaPagar =0;
+        double TotalaPagar = 0;
 
         // uso del while con 6 opciones
         while (opcionMenu != 6) {
@@ -155,7 +163,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                     // se muestra lo que hay en caja.
                     // y se ingrese la cantidad de efectivo a guardar.
                     System.out.println("-----------------------------------------------------------------------------------");
-                    System.out.println("Caja: Lps. "+ String.format("%.2f", caja));
+                    System.out.println("Caja: Lps. " + String.format("%.2f", caja));
                     System.out.println("Ingrese la cantidad de efectivo para guardar en la caja: ");
                     monto = lea.nextDouble();
 
@@ -174,7 +182,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                 // el math.round se usara para redondear lo que salga de efectivo con 2 decimales.
                 caja = Math.round(caja * 100.0) / 100.0;
                 // sale del bucle del primer inicio y sale lo que esta en pantalla.
-                System.out.println("Caja abierta con: Lps. " + String.format("%.2f", caja) );
+                System.out.println("Caja abierta con: Lps. " + String.format("%.2f", caja));
                 System.out.println("-----------------------------------------------------------------------------------");
 
 // ------------------2. ENTRAR A VENTAS------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -232,7 +240,6 @@ public class Umana_Roy_Proyecto1_Q3 {
                         // aqui se muestra el proveedor que eligio el usuario y la informacion detalla de los productos.
                         System.out.println("-----------------------------------------------------------------------------------");
                         System.out.println("El proveedor que selecciono es: " + TipoclienteVenta);
-                        System.out.println(caja);
                         System.out.println(" ______________________________________________________________________________________\n"
                                 + "|____Codigo____|__________Producto__________|_____Precio Venta_____|____kilogramos_____|\n"
                                 + "|       1      |           AZUCAR           |       LPS. 30        |    " + InventarioAzucar + "           \n"
@@ -353,13 +360,12 @@ public class Umana_Roy_Proyecto1_Q3 {
                                 continue;
                             } else if (CodigoProductoVenta == 3 && CantidadKiloVenta > InventarioTrigo) {
                                 System.out.println("\nUna disculpa solo tenemos " + InventarioTrigo + " kilogramos de " + NombreProductoVenta);
-                                continue; 
+                                continue;
 
                             } else if (CodigoProductoVenta == 4 && CantidadKiloVenta > InventarioMaiz) {
                                 System.out.println("\nUna disculpa solo tenemos " + InventarioMaiz + " Kilogramos de " + NombreProductoVenta);
                                 continue;
                             }
-
 
                             // calcular primero el subtotal.
                             double TotalProductoVenta = CantidadKiloVenta * PrecioProducto;
@@ -376,7 +382,6 @@ public class Umana_Roy_Proyecto1_Q3 {
                                 // si no, no tendra ningun descuento.
                                 Descuento = 0.0;
                             }
-
 
                             PrecioProducto = Math.round(PrecioProducto * 100.0) / 100.0;
                             subTotalVenta = Math.round(subTotalVenta * 100.0) / 100.0;
@@ -395,16 +400,16 @@ public class Umana_Roy_Proyecto1_Q3 {
                             // y las ventasAzucar se suma con la cantidadkiloventa.
                             if (CodigoProductoVenta == 1) {
                                 InventarioAzucar = InventarioAzucar - CantidadKiloVenta;
-                                VentasAzucarRanking = VentasAzucarRanking + CantidadKiloVenta;
+                                cantidad1 = cantidad1 + CantidadKiloVenta;
                             } else if (CodigoProductoVenta == 2) {
                                 InventarioAvena = InventarioAvena - CantidadKiloVenta;
-                                VentasAvenaRanking = VentasAvenaRanking + CantidadKiloVenta;
+                                cantidad2 = cantidad2 + CantidadKiloVenta;
                             } else if (CodigoProductoVenta == 3) {
                                 InventarioTrigo = InventarioTrigo - CantidadKiloVenta;
-                                VentasTrigoRanking = VentasTrigoRanking + CantidadKiloVenta;
+                                cantidad3 = cantidad3 + CantidadKiloVenta;
                             } else if (CodigoProductoVenta == 4) {
                                 InventarioMaiz = InventarioMaiz - CantidadKiloVenta;
-                                VentasMaizRanking = VentasMaizRanking + CantidadKiloVenta;
+                                cantidad4 = cantidad4 + CantidadKiloVenta;
                             }
 
                             // CONDICIONALES PARA MOSTRAR EN LA FACTURA DE VENTA.
@@ -443,7 +448,6 @@ public class Umana_Roy_Proyecto1_Q3 {
                         // eleccion si desea comprar otro  producto si o no.
                         System.out.println("Desea comprar otro producto? 1. (si) / 2. (no)");
                         ContinuarVenta = lea.nextInt();
-                        
 
                         // si el usuario elige un numero que no sea 1 o 2 le saldra este mensaje con un bucle
                         // se repetira este bucle hasta que que elija la opcion correcta.
@@ -451,14 +455,14 @@ public class Umana_Roy_Proyecto1_Q3 {
                             System.out.println("Error: Acaba de seleccionar una opcion invalida, favor seleccione una opcion valida: ");
                             ContinuarVenta = lea.nextInt();
                         }
-                        
+
                         Totaltotal += subTotalVenta;
                         String MensajeDescuento = (subTotalVenta >= 5000) ? "(10%)" : (subTotalVenta >= 1000) ? "(5%)" : "(0%)";
                         // aqui se hace los calculos  de los descuentos, impuestos. 
                         DescuentoAplicado = Totaltotal * Descuento;
                         SubtotalDespuesDescuento = Totaltotal - DescuentoAplicado;
                         ImpuestoAplicado = SubtotalDespuesDescuento * Impuesto;
-                        TotalaPagar = SubtotalDespuesDescuento + ImpuestoAplicado;                        
+                        TotalaPagar = SubtotalDespuesDescuento + ImpuestoAplicado;
 
                         // lista de math.round para redondear a 2 numeros decimales.
                         ImpuestoAplicado = Math.round(ImpuestoAplicado * 100.0) / 100.0;
@@ -487,12 +491,8 @@ public class Umana_Roy_Proyecto1_Q3 {
                                 System.out.println("Impuesto (7%): " + ImpuestoAplicado + " Lps.");
                                 System.out.println("Total a pagar: " + TotalaPagar + " Lps.");
                                 System.out.println("___________________________________________________________________________________");
-                               
-                                
 
                                 numeroVentas++; // aqui se cuenta el numero de ventas que se han hecho.
-
-                               
 
                                 break;  // ayuda a regresar al menu principal.
                             }
@@ -518,7 +518,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                         }
 
                         numeroVentas++; // aqui se cuenta el numero de ventas que se han hecho.
-                 
+
                         // condicional por si ya no hay mas productos que vender.
                         if (InventarioAzucar == 0 && InventarioAvena == 0 && InventarioTrigo == 0 && InventarioMaiz == 0) {
                             System.out.println("\nNo hay mas productos disponibles para vender.");
@@ -539,11 +539,79 @@ public class Umana_Roy_Proyecto1_Q3 {
                     // el valor medio de ventas es igual Volumenmedioventas entre el numero de ventas que se hizo.
                     ValorMedioVentas = VolumenTotalVenta / numeroVentas;
 
-                    caja = Math.round(caja * 100.0) / 100.0;
                     caja += TotalaPagar; // INGE NO SABE CUANTOS PROBLEMAS ME DIO SOLO PARA COLOCAR BIEN ESTE SUMAAAAAAAAAA
-                    
+
+                    caja = Math.round(caja * 100.0) / 100.0;
                     System.out.println("caja Actualizada: " + caja);
                     // si no la caja esta cerrada, y se muestra dicho mensaje.
+
+                    // Ordenar producto 1 y 2
+                    if (cantidad1 < cantidad2) {
+                        // Intercambiar producto 1 y 2
+                        tempProducto = producto1;
+                        producto1 = producto2;
+                        producto2 = tempProducto;
+
+                        tempCantidad = cantidad1;
+                        cantidad1 = cantidad2;
+                        cantidad2 = tempCantidad;
+                    }
+
+                    // Ordenar producto 2 y 3
+                    if (cantidad2 < cantidad3) {
+                        // Intercambiar producto 2 y 3
+                        tempProducto = producto2;
+                        producto2 = producto3;
+                        producto3 = tempProducto;
+
+                        tempCantidad = cantidad2;
+                        cantidad2 = cantidad3;
+                        cantidad3 = tempCantidad;
+                    }
+
+                    // Ordenar producto 3 y 4
+                    if (cantidad3 < cantidad4) {
+                        // Intercambiar producto 3 y 4
+                        tempProducto = producto3;
+                        producto3 = producto4;
+                        producto4 = tempProducto;
+
+                        tempCantidad = cantidad3;
+                        cantidad3 = cantidad4;
+                        cantidad4 = tempCantidad;
+                    }
+
+                    // Repetir para garantizar el orden correcto
+                    if (cantidad1 < cantidad2) {
+                        tempProducto = producto1;
+                        producto1 = producto2;
+                        producto2 = tempProducto;
+
+                        tempCantidad = cantidad1;
+                        cantidad1 = cantidad2;
+                        cantidad2 = tempCantidad;
+                    }
+
+                    if (cantidad2 < cantidad3) {
+                        tempProducto = producto2;
+                        producto2 = producto3;
+                        producto3 = tempProducto;
+
+                        tempCantidad = cantidad2;
+                        cantidad2 = cantidad3;
+                        cantidad3 = tempCantidad;
+                    }
+
+                    if (cantidad1 < cantidad2) {
+                        tempProducto = producto1;
+                        producto1 = producto2;
+                        producto2 = tempProducto;
+
+                        tempCantidad = cantidad1;
+                        cantidad1 = cantidad2;
+                        cantidad2 = tempCantidad;
+                    }
+
                 } else {
                     System.out.println("\nLa Caja esta cerrada, abra la caja y compre productos para poder vender.");
                 }
@@ -585,8 +653,8 @@ public class Umana_Roy_Proyecto1_Q3 {
                                 TipoclienteCompra = lea.next().toUpperCase();
                             }
                         }
-                        
-                        if(TipoclienteCompra.equalsIgnoreCase("R")){
+
+                        if (TipoclienteCompra.equalsIgnoreCase("R")) {
                             break;
                         }
 
@@ -821,7 +889,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                     System.out.println("-----------------------Reportes-----------------------");
                     System.out.println("------------------------------------------------------");
                     System.out.println("Cantidad Actual en caja : " + caja + " Lps.");
-                    System.out.println("Dinero Almacenado en el banco: ");
+                    System.out.println("Dinero Almacenado en el banco: " + Banco);
                     System.out.println("Numero de compras realizadas durante el dia: " + numeroCompras);
                     System.out.println("Numero de ventas realizadas durante el dia: " + numeroVentas);
                     System.out.println("Volumen total gastado en compras: " + VolumenTotalCompra + " Lps.");
@@ -832,206 +900,39 @@ public class Umana_Roy_Proyecto1_Q3 {
                     System.out.println("Volumen medio de ventas: " + ValorMedioVentas + " Lps.");
                     System.out.println("La venta con mayor ganancia realizada: " + MayorGananciaVenta + " Lps.");
                     System.out.println("La compra con mayor gasto realizada: " + MayorGastoCompra + " Lps.");
-                    System.out.println("Producto(s) estrella:"+productoEstrella);
+                    System.out.println("Producto(s) estrella:" + producto1 + " kg: " + cantidad1);
 
-                    System.out.println("\nRanking de la lista de productos mas vendidos.");
-                    // si la venta de azucar es mayor o igual a la ventas de Avena y las venta de azucar es mayor o igual las ventas de Trigo y venta de azucar es mayor o igual a las ventas de maiz
-                    // entonces el azucar el azucar sera el primero del ranking.
-                    if (VentasAzucarRanking >= VentasAvenaRanking && VentasAzucarRanking >= VentasTrigoRanking && VentasAzucarRanking >= VentasMaizRanking) {
-                        System.out.println("1. Azucar: " + VentasAzucarRanking + " kg.");
-                        // si la venta de avena es mayor igual a las ventas de trigo y la venta de avena es mayor igual a las ventas de avena es mayor igual a las ventas de maiz
-                        // entonces la avena sera el segundo lugar del ranking.
-                        if (VentasAvenaRanking >= VentasTrigoRanking && VentasAvenaRanking >= VentasMaizRanking) {
-                            System.out.println("2. Avena: " + VentasAvenaRanking + "kg.");
-                            // si la ventas de trigo es mayor igual a las ventas de maiz 
-                            // entonces el trigo sera el 3 lugar del ranking y el maiz sera 4 lugar.
-                            if (VentasTrigoRanking >= VentasMaizRanking) {
-                                System.out.println("3. Trigo: " + VentasTrigoRanking + " kg.");
-                                System.out.println("4. Maiz: " + VentasMaizRanking + " kg.");
-                            } else {
-                                // si no es el trigo 3 lugar y el maiz 4 lugar entones, el maiz sera 3 lugar y el trigo sera 4 lugar.
-                                System.out.println("3. Maiz: " + VentasMaizRanking + " kg.");
-                                System.out.println("4. Trigo: " + VentasTrigoRanking + " kg.");
-                            }
-                            // si no si, la avena es segundo lugar entonces, las ventas de trigo es mayor igual a las ventas de avena y las ventas de trigo son mayor igual a las ventas  de maiz
-                            // entonces el trigo sera el 2 lugar.
-                        } else if (VentasTrigoRanking >= VentasAvenaRanking && VentasTrigoRanking >= VentasMaizRanking) {
-                            System.out.println("2. Trigo: " + VentasTrigoRanking + " kg.");
-                            // si las ventas de avena son mayor igual a las ventas de maiz 
-                            // entonces la avena sera el 3 lugar y el maiz sera 4 lugar.
-                            if (VentasAvenaRanking >= VentasMaizRanking) {
-                                System.out.println("3. Avena: " + VentasAvenaRanking + " kg.");
-                                System.out.println("4. Maiz: " + VentasMaizRanking + " kg.");
-                            } else {
-                                // si no es la avena 3 lugar y el maiz 4 lugar entonces, el maiz sera 3 lugar y la avena sera 4 lugar.
-                                System.out.println("3. Maiz: " + VentasMaizRanking + " kg.");
-                                System.out.println("4. Avena: " + VentasAvenaRanking + " kg.");
-                            }
-                        } else {
-                            // si no es el trigo 2 lugar entonces, sera el maiz 2 lugar.
-                            System.out.println("2. Maiz: " + VentasMaizRanking + " kg.");
-                            // si las ventas de avena son mayor igual a las ventas de trigo
-                            // entonces la avena sera 3 lugar y el trigo sera 4 lugar.
-                            if (VentasAvenaRanking >= VentasTrigoRanking) {
-                                System.out.println("3. Avena: " + VentasAvenaRanking + " kg.");
-                                System.out.println("4. Trigo: " + VentasTrigoRanking + " kg.");
-                            } else {
-                                // si no es la avena 3 lugar y la avena 4 lugar entonces, el trigo sera 3 lugar y la avena sera 4 lugar.
-                                System.out.println("3. Trigo: " + VentasTrigoRanking + " kg.");
-                                System.out.println("4. Avena: " + VentasAvenaRanking + " kg.");
-                            }
-                        }
-                        // si no si, el azucar es 1 lugar, entonces, sera la avena, si las ventas de avena son mayor igual a las ventas de azucar, y las ventas de avena son mayor igual a las ventas de trigo, y las ventas de avena son mayor igual a las ventas de maiz,
-                        // entonces la avena es 1 lugar.
-                    } else if (VentasAvenaRanking >= VentasAzucarRanking && VentasAvenaRanking >= VentasTrigoRanking && VentasAvenaRanking >= VentasMaizRanking) {
-                        System.out.println("1. Avena: " + VentasAvenaRanking + " kg.");
-                        // si las ventas de azucar son mayor igual a las ventas de trigo, y las ventas de azucar son mayor igual a las ventas de maiz,
-                        // entonces la azucar sera 2 lugar.
-                        if (VentasAzucarRanking >= VentasTrigoRanking && VentasAzucarRanking >= VentasMaizRanking) {
-                            System.out.println("2. Azucar: " + VentasAzucarRanking + " kg.");
-                            // si las ventas de trigo son mayor igual a las ventas de maiz,
-                            // entonces el trigo sera 3 lugar y el maiz sera 4 lugar.
-                            if (VentasTrigoRanking >= VentasMaizRanking) {
-                                System.out.println("3. Trigo: " + VentasTrigoRanking + " kg.");
-                                System.out.println("4. Maiz: " + VentasMaizRanking + " kg.");
-                            } else {
-                                // si no es el trigo 3 lugar y el maiz 4 lugar,
-                                // entonces el maiz sera 3 lugar y el trigo sera 4 lugar.
-                                System.out.println("3. Maiz: " + VentasMaizRanking + " kg.");
-                                System.out.println("4. Trigo: " + VentasTrigoRanking + " kg.");
-                            }
-                            // si no si el azucar es 2 lugar, entonces sera el trigo, si las ventas de trigo son mayor igual a las de azucar, y las ventas de trigo son mayor igual a las ventas de maiz,
-                            // entonces sera el trigo 2 lugar.
-                        } else if (VentasTrigoRanking >= VentasAzucarRanking && VentasTrigoRanking >= VentasMaizRanking) {
-                            System.out.println("2. Trigo: " + VentasTrigoRanking + " kg.");
-                            // si las ventas de azucar son mayores o igual a las ventas de maiz,
-                            // entonces el azucar sera 3 lugar y el maiz sera 4 lugar.
-                            if (VentasAzucarRanking >= VentasMaizRanking) {
-                                System.out.println("3. Azucar: " + VentasAzucarRanking + "kg.");
-                                System.out.println("4. Maiz: " + VentasMaizRanking + " kg.");
-                            } else {
-                                // si no es el azucar 3 lugar y el maiz 4 lugar,
-                                // entonces sera el maiz sera 3 lugar y el azucar sera 4 lugar.
-                                System.out.println("3. Maiz: " + VentasMaizRanking + " kg.");
-                                System.out.println("4. Azucar: " + VentasAzucarRanking + " kg.");
-                            }
-                        } else {
-                            // si no es trigo 2 lugar, entonces sera el maiz.
-                            System.out.println("2. Maiz: " + VentasMaizRanking + " kg.");
-                            // si las ventas de azucar son mayores o iguales a las ventas de trigo,
-                            // entonces azucar sera 3 lugar y el trigo sera 4 lugar.
-                            if (VentasAzucarRanking >= VentasTrigoRanking) {
-                                System.out.println("3. Azucar: " + VentasAzucarRanking + " kg.");
-                                System.out.println("4. Trigo: " + VentasTrigoRanking + " kg.");
-                            } else {
-                                // si no es azucar el 3 lugar y trigo 4 lugar,
-                                // entonces 3 sera 3 lugar y el azucar sera 4.
-                                System.out.println("3. Trigo: " + VentasTrigoRanking + " kg.");
-                                System.out.println("4. Azucar: " + VentasAzucarRanking + " kg.");
-                            }
-                        }
-                        // si no si es avena 1 lugar, entonces sera trigo, entonces,
-                        // si las ventas de trigo son mayor o igual a las ventas de Azucar, y si las ventas de trigo son mayor o igual a las ventas de avena, y si las ventas de trigo son mayor o igual a las ventas de maiz
-                        // entonces trigo sera el 1 lugar del ranking.
-                    } else if (VentasTrigoRanking >= VentasAzucarRanking && VentasTrigoRanking >= VentasAvenaRanking && VentasTrigoRanking >= VentasMaizRanking) {
-                        System.out.println("1. Trigo: " + VentasTrigoRanking + " kg");
-                        // si las ventas de azucar son mayor o igual a las ventas de avena y  si las ventas de azucar son mayor o igual a las ventas del maiz,
-                        // entonces el azucar sera el 2 lugar del ranking.
-                        if (VentasAzucarRanking >= VentasAvenaRanking && VentasAzucarRanking >= VentasMaizRanking) {
-                            System.out.println("2. Azucar: " + VentasAzucarRanking + " kg");
-                            // si las ventas de Avena mayor o igual a las ventas del maiz,
-                            // entonces la avena sera 3 lugar y el maiz sera el 4 lugar del ranking.
-                            if (VentasAvenaRanking >= VentasMaizRanking) {
-                                System.out.println("3. Avena: " + VentasAvenaRanking + " kg");
-                                System.out.println("4. Maiz: " + VentasMaizRanking + " kg");
-                            } else {
-                                // si no es la avena 3 lugar y el maiz 4 lugar, entonces,
-                                // entonces sera el maiz 3 lugar y la vena 4 lugar.
-                                System.out.println("3. Maiz: " + VentasMaizRanking + " kg");
-                                System.out.println("4. Avena: " + VentasAvenaRanking + " kg");
-                            }
-                            // si no si el azucar es el 2 lugar, entonces sera la avena el 2 lugar, si las ventas de avena es mayor igual que las de ventas de azucar y, si las ventas de avena es mayor igual que las de ventas de maiz,
-                            // entonces sera la avena sera el 2 lugar.
-                        } else if (VentasAvenaRanking >= VentasAzucarRanking && VentasAvenaRanking >= VentasMaizRanking) {
-                            System.out.println("2. Avena: " + VentasAvenaRanking + " kg");
-                            // si la ventas de azucar es mayor igual que las ventas de maiz,
-                            // entonces azucar sera el 3 lugar y el maiz sera el 4 lugar.
-                            if (VentasAzucarRanking >= VentasMaizRanking) {
-                                System.out.println("3. Azucar: " + VentasAzucarRanking + " kg");
-                                System.out.println("4. Maiz: " + VentasMaizRanking + " kg");
-                            } else {
-                                // si no es asi, que la azucar queda en 3 lugar y el maiz en 4,
-                                // entonces el maiz que da en 3 lugar y el azucar en 4 lugar.
-                                System.out.println("3. Maiz: " + VentasMaizRanking + " kg");
-                                System.out.println("4. Azucar: " + VentasAzucarRanking + " kg");
-                            }
-                        } else {
-                            //si no si, la avena es 2 lugar, entonces el maiz sera el 2 lugar,
-                            System.out.println("2. Maiz: " + VentasMaizRanking + " kg");
-                            // si las ventas de azucar son mayores de las ventas de avena,
-                            // entonces la azucar sera el 3 lugar y la avena sera el 4 lugar.
-                            if (VentasAzucarRanking >= VentasAvenaRanking) {
-                                System.out.println("3. Azucar: " + VentasAzucarRanking + " kg");
-                                System.out.println("4. Avena: " + VentasAvenaRanking + " kg");
-                            } else {
-                                // si no es asi, que la azucar sea 3 lugar y la avena 4 lugar,
-                                // entonces la avena sera 3 lugar, y la azucar sera 4 lugar.
-                                System.out.println("3. Avena: " + VentasAvenaRanking + " kg");
-                                System.out.println("4. Azucar: " + VentasAzucarRanking + " kg");
-                            }
-                        }
+                    // Mostrar el ranking de productos
+                    System.out.println(" Ranking de productos:");
+
+                    System.out.print(rank + ". " + producto1 + " - Kilos Vendidos: " + cantidad1);
+
+                    if (cantidad1 == cantidad2) {
+                        System.out.print(", " + producto2 + " - Kilos Vendidos: " + cantidad2);
                     } else {
-                        // si no es asi, que el trigo sea el 1 lugar del ranking, entonces el maiz sera el 1 lugar.
-                        System.out.println("1. Maiz: " + VentasMaizRanking + " kg");
-                        // si las ventas de azucar son mayor o igual a las ventas de avena y,  si las ventas de azucar son mayor o igual a las ventas de trigo,
-                        // entonces el azucar sera el 2 lugar.
-                        if (VentasAzucarRanking >= VentasAvenaRanking && VentasAzucarRanking >= VentasTrigoRanking) {
-                            System.out.println("2. Azucar: " + VentasAzucarRanking + " kg");
-                            if (VentasAvenaRanking >= VentasTrigoRanking) {
-                                // si las ventas de avena son mayor igual a las de trigo,
-                                // entonces el avena sera el 3 lugar y el trigo, sera el 4 lugar.
-                                System.out.println("3. Avena: " + VentasAvenaRanking + " kg");
-                                System.out.println("4. Trigo: " + VentasTrigoRanking + " kg");
-                            } else {
-                                // si no es asi que, la avena sea 3 lugar y el trigo 4,
-                                // entonces sera el trigo 3 lugar y la avena ultimo lugar.
-                                System.out.println("3. Trigo: " + VentasTrigoRanking + " kg");
-                                System.out.println("4. Avena: " + VentasAvenaRanking + " kg");
-                            }
-                            // si no si que el azucar sea 2 lugar, entonces avena sera 2 lugar, 
-                            // asi que si las ventas de avena son mayor igual que las ventas de azucar y, si las ventas de avena son mayor igual que las ventas de trigo,
-                            // entonces la avena sera el 2 lugar.
-                        } else if (VentasAvenaRanking >= VentasAzucarRanking && VentasAvenaRanking >= VentasTrigoRanking) {
-                            System.out.println("2. Avena: " + VentasAvenaRanking + " kg");
-                            // si las ventas de azucar son mayor igual a las ventas de trigo,
-                            // entonces el azucar sera 3 lugar y el trigo sera el 4 lugar.
-                            if (VentasAzucarRanking >= VentasTrigoRanking) {
-                                System.out.println("3. Azucar: " + VentasAzucarRanking + " kg");
-                                System.out.println("4. Trigo: " + VentasTrigoRanking + " kg");
-                            } else {
-                                // si no es asi, que el azucar sea 3 lugar y el trigo sea 4 lugar,
-                                // entonces el trigo sera 3 y el azucar 4.
-                                System.out.println("3. Trigo: " + VentasTrigoRanking + " kg");
-                                System.out.println("4. Azúcar: " + VentasAzucarRanking + " kg");
-                            }
-                        } else {
-                            // si no es asi que, la avena este en el segundo puesto del ranking,
-                            // entonces, lo sera el trigo.
-                            System.out.println("2. Trigo: " + VentasTrigoRanking + " kg");
-                            // si las ventas de azucar son mayores o iguales a las ventas de avena,
-                            // entonces, azucar quedara en 3 lugar, y la avena quedara en 4 puesto.
-                            if (VentasAzucarRanking >= VentasAvenaRanking) {
-                                System.out.println("3. Azucar: " + VentasAzucarRanking + " kg");
-                                System.out.println("4. Avena: " + VentasAvenaRanking + " kg");
-                            } else {
-                                // si no es asi que, el azucar quede en 3 puesto y el avena en 4,
-                                // entonces, sera lo opuesto avena de 3 lugar y el Azuca de ultimo.
-                                System.out.println("3. Avena: " + VentasAvenaRanking + " kg");
-                                System.out.println("4. Azucar: " + VentasAzucarRanking + " kg");
-                            }
-                        }
+                        rank++;
+                        System.out.println();
+                        System.out.print(rank + ". " + producto2 + " - Kilos Vendidos: " + cantidad2);
                     }
 
+                    if (cantidad2 == cantidad3) {
+                        System.out.print(", " + producto3 + " - Kilos Vendidos: " + cantidad3);
+                    } else {
+                        rank++;
+                        System.out.println();
+                        System.out.print(rank + ". " + producto3 + " - Kilos Vendidos: " + cantidad3);
+                    }
+
+                    if (cantidad3 == cantidad4) {
+                        System.out.print(", " + producto4 + " - Kilos Vendidos: " + cantidad4);
+                    } else {
+                        rank++;
+                        System.out.println();
+                        System.out.print(rank + ". " + producto4 + " - Kilos Vendidos: " + cantidad4);
+                    }
+
+                    // Asegura que el salto de línea finalice correctamente la última línea
+                    System.out.println();
                     // no se mostrara esto porque la caja esta cerrada.
                 } else {
                     System.out.println("\nCaja cerrada, por favor haga ventas y compras para poder ver los reportes correctamente.");
@@ -1106,10 +1007,10 @@ public class Umana_Roy_Proyecto1_Q3 {
                         InventarioMaiz = 0;
                         maxKilos = 0;
                         productoEstrella = "";
-                        VentasAzucarRanking = 0;
-                        VentasAvenaRanking = 0;
-                        VentasTrigoRanking = 0;
-                        VentasMaizRanking = 0;
+                        cantidad1 = 0;
+                        cantidad2 = 0;
+                        cantidad3 = 0;
+                        cantidad4 = 0;
                         TotalCompra = 0;
                         CantidadKiloCompraTotal = 0;
                         CantidadKiloVentaTotal = 0;
@@ -1118,8 +1019,7 @@ public class Umana_Roy_Proyecto1_Q3 {
                         CantidadVendidaTrigo = 0;
                         CantidadVendidaMaiz = 0;
 
-                        
-                    } else if(Cerrar_si_no.equalsIgnoreCase("no")){
+                    } else if (Cerrar_si_no.equalsIgnoreCase("no")) {
                         continue;
                     }
 

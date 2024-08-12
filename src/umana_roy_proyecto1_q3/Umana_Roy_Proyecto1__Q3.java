@@ -40,22 +40,24 @@ public class Umana_Roy_Proyecto1__Q3 {
         // variable para ingresar al menu
         int opcionMenu = 0;
         double caja = 0; // variable para caja inicilizada en 0
-        double monto; // variable del monto.
+        double monto = 0; // variable donde se ingresa el dinero de la caja al inicio.
         double subTotalVenta = 0; // en esta variable se actualizara en cada iteracion para reflejar el costo total de todos los productos agregados en su momento.
         double PrecioProducto = 0; // variable del precio del producto.
         boolean poderComprar = false; // usamos un bolean donde se sepa si se puede comprar o no.
         int CodigoProductoVenta; // este es para poner el codigo del producto 
-        double CantidadKiloCompra; // este seria la cantidad de kilogramos para compras.
-        double CantidadKiloVenta = 0; // este seria la cantidad de kilogramos para ventas.
+        double CantidadKiloCompra = 0; // este seria la cantidad de kilogramos para compras.
+        double CantidadKiloVenta = 0;// este seria la cantidad de kilogramos para ventas.
         double Descuento = 0; // Variable del descuento.
         int CodigoProductoCompra; // Variable para acceder al Codigo del Producto de la seccion Compra.
         double Impuesto = 0.07; // Variable del impuesto del 7%.
         double TotalCompra = 0;
-        double CantidadKiloCompraTotal = 0;
         double CantidadKiloVentaTotal = 0;
         double Totaltotal = 0; // este ayuda como memoria para guardar el total de ventas
         double DiferenciaCompra;
         int ConfirmacionSeccionCompras; // sirve para preguntarle al usuario si de verdad quiere comprar el producto
+        int Dia = 1;
+        String NombreMayorVenta = "";
+        double MayorVentaKilogramos = 0;
 
         // variable como espacio en memoria para el numero de ventas.
         int numeroVentas = 0;
@@ -73,6 +75,7 @@ public class Umana_Roy_Proyecto1__Q3 {
         // variables para a venta con mayor ganancia realizada y la compra con más gasto efectuada. 
         double MayorGananciaVenta = 0;
         double MayorGastoCompra = 0;
+        String NombreProductoVenta = "";
 
         // este es el kilo de los productos inicializado en 0.
         double InventarioAzucar = 0;
@@ -80,43 +83,41 @@ public class Umana_Roy_Proyecto1__Q3 {
         double InventarioTrigo = 0;
         double InventarioMaiz = 0;
 
-        double maxKilos = 0;
-        // aqui se guarda el con un string vacio el nombre del producto estrella, el que mas se vendio.
-        String productoEstrella = "";
-        String posicion2 = "";
-        String posicion3 = "";
-        String posicion4 = "";
-
-        // variables declaradas en 0 para el ranking.
+        // VARIABLES NECESITADAs PARA EL RANKING Y EL PRODUCTO ESTRELLA.
+//--------------------------------------------------------------------------------|        
+        // variables declaradas en 0 para el ranking.                              
+        // cantidad de kg
         double cantidad1 = 0;
         double cantidad2 = 0;
         double cantidad3 = 0;
         double cantidad4 = 0;
-
-        // variables para mostrar lo vendido en el ranking
-        double CantidadVendidaAzucar = 0;
-        double CantidadVendidaAvena = 0;
-        double CantidadVendidaTrigo = 0;
-        double CantidadVendidaMaiz = 0;
         String producto1 = "Azucar";
         String producto2 = "Avena";
         String producto3 = "Trigo";
         String producto4 = "Maiz";
+        String productoEstrella = "";
+        double maxCantidad = 0;
         // variables para el interacambio
         String tempProducto;
         double tempCantidad;
-        int rank = 1;
+        int rank = 1; // variable para determinar la posicion de los productos
+//--------------------------------------------------------------------------------|
+
+        // variables para mostrar lo vendido en en ventas
+        double CantidadVendidaAzucar = 0;
+        double CantidadVendidaAvena = 0;
+        double CantidadVendidaTrigo = 0;
+        double CantidadVendidaMaiz = 0;
 
         // variable que se hace el deposito al banco.
         double deposito;
         double Banco = 0;
         // este boolean nos ayuda a detectar si la caja esta abierta true y si la caja de esta cerrada false.
-        boolean cajaAbierta = false;
+
+        String CajaAbierta = "cerrado";
 
         // primer inicio, esta variable me ayuda a que despues de abrir la caja por primera vez,
         // este sale true, despues de una segunda entrada se convertira en falso, entonces ya no pedira cuanto de efectivo hay que ingresar en caja.
-        boolean primerInicio = true;
-
         String Cerrar_si_no = ""; // string donde si el usuario de verdad quiere cerrar la caja.
         double DescuentoAplicado = 0;
         double SubtotalDespuesDescuento = 0;
@@ -127,7 +128,7 @@ public class Umana_Roy_Proyecto1__Q3 {
         while (opcionMenu != 6) {
 
             // sale las opciones disponibles en pantalla.
-            System.out.println("\nMenu Principal");
+            System.out.println("\nMenu Principal" + " Dia: " + Dia);
             System.out.println("---------------------------");
             System.out.println("|1. Abrir Caja            |");
             System.out.println("|2. Ventas                |");
@@ -144,7 +145,7 @@ public class Umana_Roy_Proyecto1__Q3 {
                 System.out.println("\n");
                 System.out.println("Error: debe seleccionar una opcion valida, vuelva a intentarlo porfavor.!!!");
                 // sigue siendo el primer inicio, por que no a ingresado un numero valido.
-                primerInicio = true;
+
             }
 
 // ---------------------- 1. ENTRAR A LA CAJA------------------------------------------------------------------------------------------------------------------------------
@@ -152,13 +153,9 @@ public class Umana_Roy_Proyecto1__Q3 {
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
             if (opcionMenu == 1) {
 
-                caja = Math.round(caja * 100.0) / 100.0;
-                System.out.println("A ingresado a caja.");
-                // es true por que la caja abre.
-                cajaAbierta = true;
                 // metemos el primer inicio con una condicional.
                 // sin el primer inicio, el programa pediria que de nuevo ingresara la cantidad de efectivo.
-                if (primerInicio) {
+                if (CajaAbierta.equals("abierta") || monto == 0) {
 
                     // se muestra lo que hay en caja.
                     // y se ingrese la cantidad de efectivo a guardar.
@@ -175,9 +172,13 @@ public class Umana_Roy_Proyecto1__Q3 {
                     // caja = caja + monto para sumar el monto ingresando en caja, esto se hace para actualizar el valor de caja con el nuevo monto.
                     //ingresando por el usuario esto es equivalente a escribir: caja = caja + monto
                     caja = caja + monto;
-                    primerInicio = true; //despues del primer inicio cambia a falso
 
                 }
+
+                if (CajaAbierta.equals("cerrado")) {
+                    System.out.println("Se abrio caja");
+                }
+                CajaAbierta = "abierta";
 
                 // el math.round se usara para redondear lo que salga de efectivo con 2 decimales.
                 caja = Math.round(caja * 100.0) / 100.0;
@@ -190,8 +191,19 @@ public class Umana_Roy_Proyecto1__Q3 {
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             } else if (opcionMenu == 2) {
 
+                CantidadVendidaAzucar = 0;
+                CantidadVendidaAvena = 0;
+                CantidadVendidaTrigo = 0;
+                CantidadVendidaMaiz = 0;
+                DescuentoAplicado = 0;
+                SubtotalDespuesDescuento = 0;
+                ImpuestoAplicado = 0;
+                TotalaPagar = 0;
+                subTotalVenta = 0;
+                Totaltotal = 0;
+
                 // se abre la caja con una condicional.
-                if (cajaAbierta) {
+                if (CajaAbierta.equals("abierta")) {
 
                     // pongo un error, porque sin a ver comprado no puede venderse. 
                     if (InventarioAzucar == 0 && InventarioAvena == 0 && InventarioTrigo == 0 && InventarioMaiz == 0) {
@@ -221,16 +233,32 @@ public class Umana_Roy_Proyecto1__Q3 {
                             System.out.println("B. - El tipo (b) solo puede comprar a los codigos 1 (Azucar), 2 (Avena) y 3(Trigo).");
                             System.out.println("C. - El tipo (c) solo puede comprar a los codigos 4 (Maiz).");
                             System.out.println("-----------------------------------------------------------------------------------");
+                            System.out.println("!AVISO, si quiere volver al menu principal, PRESIONE (S)");
                             System.out.println("Ingrese el tipo de proveedor que se ve en pantalla (A),(B) o (C): ");
                             TipoclienteVenta = lea.next().toUpperCase(); // cuando el usuario ingresa una letra miniscula, el upper case convirte esa letra a mayuscula. 
 
                             // usare un bucle while donde si el usuario no ingresa una opcion valida entre A,B,C
                             // seguira repitiendose que ingrese el tipo de cliente hasta que ingrese la letra Valida.
-                            while (!TipoclienteVenta.equals("A") && !TipoclienteVenta.equals("B") && !TipoclienteVenta.equals("C")) {
+                            while (!TipoclienteVenta.equals("A") && !TipoclienteVenta.equals("B") && !TipoclienteVenta.equals("C") && !TipoclienteVenta.equals("S")) {
                                 System.out.println("\nERROR: Acaba de selecionar una opcion invalida, favor ingrese la opcion de nuevo: ");
                                 TipoclienteVenta = lea.next().toUpperCase();
                             }
                         }
+
+                        if (TipoclienteVenta.equalsIgnoreCase("S")) {
+                            break;
+                        }
+
+                        if (TipoclienteVenta.equalsIgnoreCase("B") && InventarioAzucar == 0 && InventarioAvena == 0 && InventarioTrigo == 0) {
+                            System.out.println("Lo sentimos proveedor b no tenemos producto para ti. Volviendo al menu principal");
+                            break;
+                        }
+
+                        if (TipoclienteVenta.equalsIgnoreCase("C") && InventarioMaiz == 0) {
+                            System.out.println("Lo sentimos proveedor C no tenemos producto para ti. Volviendo al menu principal");
+                            break;
+                        }
+
                         // este math.round funciona para redondear lo son los kilos.
                         InventarioAzucar = Math.round(InventarioAzucar * 100.0) / 100.0;
                         InventarioAvena = Math.round(InventarioAvena * 100.0) / 100.0;
@@ -249,7 +277,7 @@ public class Umana_Roy_Proyecto1__Q3 {
                         System.out.println("----------------------------------------------------------------------------------------");
                         System.out.println("Ingrese el codigo del Producto: ");
                         CodigoProductoVenta = lea.nextInt();
-                        String NombreProductoVenta = ""; // aqui agregamos un producto string vacio, y se llena 
+                        NombreProductoVenta = ""; // aqui agregamos un producto string vacio, y se llena 
                         // al elegir un producto.
 
                         // aqui pongo un bucle por si el usuario escoge un numero que no esta en la seccion
@@ -371,27 +399,15 @@ public class Umana_Roy_Proyecto1__Q3 {
                             double TotalProductoVenta = CantidadKiloVenta * PrecioProducto;
                             subTotalVenta = TotalProductoVenta;
 
-                            // condicional para el descuento.
-                            // si el subtotal sale con 1000, tendra un descuento del 5%
-                            if (subTotalVenta >= 5000) {
-                                Descuento = 0.10;
-                                // si no si, el subtotal sale con 5000, tendra un descuento del 10%
-                            } else if (subTotalVenta >= 1000) {
-                                Descuento = 0.05;
-                            } else {
-                                // si no, no tendra ningun descuento.
-                                Descuento = 0.0;
-                            }
-
                             PrecioProducto = Math.round(PrecioProducto * 100.0) / 100.0;
                             subTotalVenta = Math.round(subTotalVenta * 100.0) / 100.0;
 
                             // se muestran los detalles de la venta.
                             System.out.println("\n------------------------------Detalles de la venta---------------------------------");
                             System.out.println("Producto Agregado: " + NombreProductoVenta);
-                            System.out.println("Cantidad de kilogramo " + CantidadKiloVenta + " Kg.");
-                            System.out.println("Precio por Kg " + PrecioProducto + " Lps.");
-                            System.out.println("Precio por los kg: " + subTotalVenta);
+                            System.out.println("Cantidad de kilogramo " + String.format("%.2f", CantidadKiloVenta) + " Kg.");
+                            System.out.println("Precio por Kg " + String.format("%.2f", PrecioProducto) + " Lps.");
+                            System.out.println("Precio por los kg: " + String.format("%.2f", subTotalVenta));
                             System.out.println("-----------------------------------------------------------------------------------");
 
                             // CONDICIONALES DONDE SE LE RESTAN CUANDO SE COMPRAN LOS KG Y SIRVEN COMO STOCK
@@ -418,26 +434,9 @@ public class Umana_Roy_Proyecto1__Q3 {
                             } else if (CodigoProductoVenta == 2) {
                                 CantidadVendidaAvena = CantidadVendidaAvena + CantidadKiloVenta;
                             } else if (CodigoProductoVenta == 3) {
-                                CantidadVendidaTrigo = CantidadVendidaAvena + CantidadKiloVenta;
+                                CantidadVendidaTrigo = CantidadVendidaTrigo + CantidadKiloVenta;
                             } else if (CodigoProductoVenta == 4) {
-                                CantidadVendidaMaiz = CantidadVendidaAvena + CantidadKiloVenta;
-                            }
-
-                            // Determinación del nuevo producto estrella si hay uno con mayor cantidad de kilos
-                            if (CantidadKiloVenta > maxKilos) {
-                                maxKilos = CantidadKiloVenta;
-                                productoEstrella = "Azúcar";
-                            } else if (CantidadKiloVenta > maxKilos) {
-                                maxKilos = CantidadKiloVenta;
-                                productoEstrella = "Avena";
-                            } else if (CantidadKiloVenta > maxKilos) {
-                                maxKilos = CantidadKiloVenta;
-                                productoEstrella = "Trigo";
-                            } else if (CantidadKiloVenta > maxKilos) {
-                                maxKilos = CantidadKiloVenta;
-                                productoEstrella = "Maíz";
-                            } else {
-                                productoEstrella = "";
+                                CantidadVendidaMaiz = CantidadVendidaMaiz + CantidadKiloVenta;
                             }
 
                             // no puede comprar si el usuario elige un proveedor que no pueda comprar un producto en especifico.
@@ -457,7 +456,18 @@ public class Umana_Roy_Proyecto1__Q3 {
                         }
 
                         Totaltotal += subTotalVenta;
-                        String MensajeDescuento = (subTotalVenta >= 5000) ? "(10%)" : (subTotalVenta >= 1000) ? "(5%)" : "(0%)";
+                        // condicional para el descuento.
+                        // si el subtotal sale con 1000, tendra un descuento del 5%
+                        if (Totaltotal >= 5000) {
+                            Descuento = 0.10;
+                            // si no si, el subtotal sale con 5000, tendra un descuento del 10%
+                        } else if (Totaltotal >= 1000) {
+                            Descuento = 0.05;
+                        } else {
+                            // si no, no tendra ningun descuento.
+                            Descuento = 0.0;
+                        }
+                        String MensajeDescuento = (Totaltotal >= 5000) ? "(10%)" : (Totaltotal >= 1000) ? "(5%)" : "(0%)";
                         // aqui se hace los calculos  de los descuentos, impuestos. 
                         DescuentoAplicado = Totaltotal * Descuento;
                         SubtotalDespuesDescuento = Totaltotal - DescuentoAplicado;
@@ -485,11 +495,11 @@ public class Umana_Roy_Proyecto1__Q3 {
                                 System.out.println("Avena     |        " + CantidadVendidaAvena + "kg        | Lps. 25");
                                 System.out.println("Trigo     |        " + CantidadVendidaTrigo + "kg        | Lps. 32");
                                 System.out.println("Maiz      |        " + CantidadVendidaMaiz + "kg        | Lps. 20");
-                                System.out.println("Subtotal: " + Totaltotal + " Lps.");
-                                System.out.println("Descuento: " + MensajeDescuento + " " + DescuentoAplicado + " Lps.");
-                                System.out.println("Subtotal despues de descuento: " + SubtotalDespuesDescuento + " Lps.");
-                                System.out.println("Impuesto (7%): " + ImpuestoAplicado + " Lps.");
-                                System.out.println("Total a pagar: " + TotalaPagar + " Lps.");
+                                System.out.println("Subtotal: " + String.format("%.2f", Totaltotal) + " Lps.");
+                                System.out.println("Descuento: " + MensajeDescuento + " " + String.format("%.2f", DescuentoAplicado) + " Lps.");
+                                System.out.println("Subtotal despues de descuento: " + String.format("%.2f", SubtotalDespuesDescuento) + " Lps.");
+                                System.out.println("Impuesto (7%): " + String.format("%.2f", ImpuestoAplicado) + " Lps.");
+                                System.out.println("Total a pagar: " + String.format("%.2f", TotalaPagar) + " Lps.");
                                 System.out.println("___________________________________________________________________________________");
 
                                 numeroVentas++; // aqui se cuenta el numero de ventas que se han hecho.
@@ -508,11 +518,11 @@ public class Umana_Roy_Proyecto1__Q3 {
                             System.out.println("Avena     |        " + CantidadVendidaAvena + "kg        | Lps. 25");
                             System.out.println("Trigo     |        " + CantidadVendidaTrigo + "kg        | Lps. 32");
                             System.out.println("Maiz      |        " + CantidadVendidaMaiz + "kg        | Lps. 20");
-                            System.out.println("Subtotal: " + Totaltotal + " Lps.");
-                            System.out.println("Descuento: " + MensajeDescuento + " " + DescuentoAplicado + " Lps.");
-                            System.out.println("Subtotal despues de descuento: " + SubtotalDespuesDescuento + " Lps.");
-                            System.out.println("Impuesto (7%): " + ImpuestoAplicado + " Lps.");
-                            System.out.println("Total a pagar: " + TotalaPagar + " Lps.");
+                            System.out.println("Subtotal: " + String.format("%.2f", Totaltotal) + " Lps.");
+                            System.out.println("Descuento: " + MensajeDescuento + " " + String.format("%.2f", DescuentoAplicado) + " Lps.");
+                            System.out.println("Subtotal despues de descuento: " + String.format("%.2f", SubtotalDespuesDescuento) + " Lps.");
+                            System.out.println("Impuesto (7%): " + String.format("%.2f", ImpuestoAplicado) + " Lps.");
+                            System.out.println("Total a pagar: " + String.format("%.2f", TotalaPagar) + " Lps.");
                             System.out.println("___________________________________________________________________________________");
 
                         }
@@ -535,6 +545,9 @@ public class Umana_Roy_Proyecto1__Q3 {
                     // entonces MayorGananciaventa es igual al TotalaPagar.
                     if (TotalaPagar > MayorGananciaVenta) {
                         MayorGananciaVenta = TotalaPagar;
+                        MayorVentaKilogramos = CantidadKiloVenta;
+                        NombreMayorVenta = NombreProductoVenta;
+
                     }
                     // el valor medio de ventas es igual Volumenmedioventas entre el numero de ventas que se hizo.
                     ValorMedioVentas = VolumenTotalVenta / numeroVentas;
@@ -545,6 +558,7 @@ public class Umana_Roy_Proyecto1__Q3 {
                     System.out.println("caja Actualizada: " + caja);
                     // si no la caja esta cerrada, y se muestra dicho mensaje.
 
+                    // condicionales para el productoestrella y el ranking.
                     // Ordenar producto 1 y 2
                     if (cantidad1 < cantidad2) {
                         // Intercambiar producto 1 y 2
@@ -612,7 +626,31 @@ public class Umana_Roy_Proyecto1__Q3 {
                         cantidad2 = tempCantidad;
                     }
 
-                } else {
+                    maxCantidad = cantidad1;
+                    productoEstrella = producto1;
+
+                    if (cantidad2 == maxCantidad) {
+                        productoEstrella += ", " + producto2;
+                    } else if (cantidad2 > maxCantidad) {
+                        maxCantidad = cantidad2;
+                        productoEstrella = producto2;
+                    }
+
+                    if (cantidad3 == maxCantidad) {
+                        productoEstrella += ", " + producto3;
+                    } else if (cantidad3 > maxCantidad) {
+                        maxCantidad = cantidad3;
+                        productoEstrella = producto3;
+                    }
+
+                    if (cantidad4 == maxCantidad) {
+                        productoEstrella += ", " + producto4;
+                    } else if (cantidad4 > maxCantidad) {
+                        maxCantidad = cantidad4;
+                        productoEstrella = producto4;
+                    }
+
+                } else if (CajaAbierta.equals("cerrado")) {
                     System.out.println("\nLa Caja esta cerrada, abra la caja y compre productos para poder vender.");
                 }
 
@@ -621,7 +659,7 @@ public class Umana_Roy_Proyecto1__Q3 {
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             } else if (opcionMenu == 3) {
                 // condicional para la caja abierta.
-                if (cajaAbierta) {
+                if (CajaAbierta.equals("abierta")) {
 
                     // string vacio para el tipo de cliente compra, para la funcion is isEmpty.
                     String TipoclienteCompra = "";
@@ -723,7 +761,7 @@ public class Umana_Roy_Proyecto1__Q3 {
                                 // y su precio de compra es de 32.
                             } else if (CodigoProductoCompra == 3) {
                                 NombreProductoCompra = "Trigo";
-                                PrecioProducto = 32;
+                                PrecioProducto = 30;
                                 // si no si el codigo de producto es 4, el nombre del producto es "Maiz"
                                 // y su precio de compra es de 18.
                             } else if (CodigoProductoCompra == 4) {
@@ -765,9 +803,9 @@ public class Umana_Roy_Proyecto1__Q3 {
                                 System.out.println("\n--------------------------------Facturacion de la compra---------------------------");
                                 System.out.println("Proveedor: " + TipoclienteCompra);
                                 System.out.println("Producto: " + NombreProductoCompra);
-                                System.out.println("Cantidad de Kilogramo: " + CantidadKiloCompra + " Kg");
-                                System.out.println("Precio por Kg: " + PrecioProducto + " Lps.");
-                                System.out.println("Total del Producto: " + TotalProductoCompra + " Lps.");
+                                System.out.println("Cantidad de Kilogramo: " + String.format("%.2f", CantidadKiloCompra) + " Kg");
+                                System.out.println("Precio por Kg: " + String.format("%.2f", PrecioProducto) + " Lps.");
+                                System.out.println("Total del Producto: " + String.format("%.2f", TotalProductoCompra) + " Lps.");
                                 System.out.println("-----------------------------------------------------------------------------------");
 
                                 // el volumencompra es igual a volumencompra mas TotalProductoCompra.
@@ -805,15 +843,13 @@ public class Umana_Roy_Proyecto1__Q3 {
                                     InventarioMaiz += CantidadKiloCompra;
                                 }
 
-                                CantidadKiloCompraTotal += CantidadKiloCompra;
-
                                 caja = Math.round(caja * 100.0) / 100.0;
-                                System.out.println("Caja actualizada con: " + caja + " Lps.");
+                                System.out.println("Caja actualizada con: " + String.format("%.2f", caja) + " Lps.");
                                 System.out.println("___________________________________________________________________________________");
                             } else {
                                 DiferenciaCompra = PrecioProducto * CantidadKiloCompra - caja;
                                 // si no hay suficiente dinero en la caja, no se peude comprar.
-                                System.out.println("\nNo se puede pagar compra, por insufisiencia monetaria. solo tienes " + caja + " Lps. en caja,tu compra era " + NombreProductoCompra + "\n que cuesta " + PrecioProducto + "Lps. por unidad, y los kilogramos que querias comprar eran " + CantidadKiloCompra + "kg, en total te costaba " + TotalProductoCompra + "Lps \nlo que te falto de dinero era: " + DiferenciaCompra + " Lps.");
+                                System.out.println("\nNo se puede pagar compra, por insufisiencia monetaria. solo tienes " + String.format("%.2f", caja) + " Lps. en caja,tu compra era " + NombreProductoCompra + "\nque cuesta " + String.format("%.2f", PrecioProducto) + "Lps. por unidad, y los kilogramos que querias comprar eran " + String.format("%.2f", CantidadKiloCompra) + "kg, en total te costaba " + String.format("%.2f", TotalProductoCompra) + " Lps. \nlo que te falto de dinero era: " + String.format("%.2f", DiferenciaCompra) + " Lps.");
                                 break;
                             }
 
@@ -827,17 +863,19 @@ public class Umana_Roy_Proyecto1__Q3 {
                     }
 
                     // sale el else que la caja esta cerrada.
-                } else {
-                    System.out.println("\nLa caja esta cerrada. abra la caja para poder comprar.");
+                }
+                if (CajaAbierta.equals("cerrado")) {
+                    System.out.println("Error: Caja cerrada, primer abra la caja para poder comprar.");
                 }
 
 // ---------------4. ENTRAR A REPORTES-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             } else if (opcionMenu == 4) {
+                rank = 1; // rank se reinicia a 1 para que los puesto no se vayan incrementando
 
                 // condicional, cuando la caja este abierta, aparece todo lo que este dentro de esta condicion.
-                if (cajaAbierta) {
+                if (CajaAbierta.equals("abierta")) {
 
                     caja = Math.round(caja * 100.0) / 100.0;
                     VolumenTotalCompra = Math.round(VolumenTotalCompra * 100.0) / 100.0;
@@ -860,7 +898,7 @@ public class Umana_Roy_Proyecto1__Q3 {
                     // lo hize con condicionales
                     // si el margen de ganancia es mayor a 0, entonces saldra este mensaje.
                     if (MargenGanancia > 0) {
-                        MensajeMargenGanancia = "Ganancias: " + MargenGanancia + " Lps.";
+                        MensajeMargenGanancia = "Ganancias: " + String.format("%.2f", MargenGanancia) + " Lps.";
 
                         // si no si, el margen es menor o igual a 0, entonces saldra este mensaje.
                     } else if (MargenGanancia <= 0) {
@@ -872,7 +910,7 @@ public class Umana_Roy_Proyecto1__Q3 {
 
                     // si el margen de perdida es menor a 0, entonces saldra este mensaje.
                     if (MargenPerdidada < 0) {
-                        MensajeMargenperdida = "Perdidas: " + MargenPerdidada + " Lps.";
+                        MensajeMargenperdida = "Perdidas: " + String.format("%.2f", MargenPerdidada) + " Lps.";
                         // si no si, el margen de perdida es mayor que cero, entonces saldra este mensaje.
                     } else if (MargenPerdidada > 0) {
                         MensajeMargenperdida = "No tuvimos Perdidas.";
@@ -886,55 +924,61 @@ public class Umana_Roy_Proyecto1__Q3 {
                     //----------------------------
                     //---------------------------
                     // aqui se muestra en consola lo que es los reportes.
-                    System.out.println("-----------------------Reportes-----------------------");
-                    System.out.println("------------------------------------------------------");
-                    System.out.println("Cantidad Actual en caja : " + caja + " Lps.");
-                    System.out.println("Dinero Almacenado en el banco: " + Banco);
-                    System.out.println("Numero de compras realizadas durante el dia: " + numeroCompras);
-                    System.out.println("Numero de ventas realizadas durante el dia: " + numeroVentas);
-                    System.out.println("Volumen total gastado en compras: " + VolumenTotalCompra + " Lps.");
-                    System.out.println("Volumen Total ganado en ventas: " + VolumenTotalVenta + " Lps.");
-                    System.out.println("Margen de ganancia: " + MensajeMargenGanancia);
-                    System.out.println("Margen de perdida: " + MensajeMargenperdida);
-                    System.out.println("Volumen medio de compras: " + ValorMedioCompras + " Lps.");
-                    System.out.println("Volumen medio de ventas: " + ValorMedioVentas + " Lps.");
-                    System.out.println("La venta con mayor ganancia realizada: " + MayorGananciaVenta + " Lps.");
-                    System.out.println("La compra con mayor gasto realizada: " + MayorGastoCompra + " Lps.");
-                    System.out.println("Producto(s) estrella:" + producto1 + " kg: " + cantidad1);
+                    System.out.println("\n-------------------------------------Reportes--------------------------------------");
+                    System.out.println("Reportes del dia: " + Dia);
+                    System.out.println("A. - Cantidad actual en caja : " + String.format("%.2f", caja) + " Lps.");
+                    System.out.println("     Dinero guardado en el banco: " + String.format("%.2f", Banco));
+                    System.out.println("-----------------------------------------------------------------------------------");
+                    System.out.println("B. - Numero de compras realizadas durante el dia: " + numeroCompras);
+                    System.out.println("     Numero de ventas realizadas durante el dia: " + numeroVentas);
+                    System.out.println("-----------------------------------------------------------------------------------");
+                    System.out.println("C. - Volumen total gastado en compras: " + String.format("%.2f", VolumenTotalCompra) + " Lps.");
+                    System.out.println("     Volumen total ganado en ventas: " + String.format("%.2f", VolumenTotalVenta) + " Lps.");
+                    System.out.println("Margen de ganancia: " + String.format("%.2f", ((VolumenTotalVenta - VolumenTotalCompra) / VolumenTotalVenta) * 100) + "% " + MensajeMargenGanancia);
+                    System.out.println("     Margen de perdida: " + MensajeMargenperdida);
+                    System.out.println("-----------------------------------------------------------------------------------");
+                    System.out.println("D. - Volumen medio de compras: " + String.format("%.2f", ValorMedioCompras) + " Lps.");
+                    System.out.println("     Volumen medio de ventas: " + String.format("%.2f", ValorMedioVentas) + " Lps.");
+                    System.out.println("-----------------------------------------------------------------------------------");
+                    System.out.println("E. - La venta con mayor ganancia realizada: " + String.format("%.2f", MayorGananciaVenta) + " Lps.");
+                    System.out.println("     La compra con mayor gasto realizada: " + String.format("%.2f", MayorGastoCompra) + " Lps.");
+                    System.out.println("-----------------------------------------------------------------------------------");
+                    System.out.println("F. - Producto(s) estrella: " + productoEstrella + " kg: " + cantidad1);
+                    System.out.println("-----------------------------------------------------------------------------------");
 
                     // Mostrar el ranking de productos
-                    System.out.println(" Ranking de productos:");
+                    System.out.println("G. - Ranking de productos:");
 
-                    System.out.print(rank + ". " + producto1 + " - Kilos Vendidos: " + cantidad1);
+                    System.out.print(rank + ". " + producto1 + " - Kilogramos Vendidos: " + cantidad1);
 
                     if (cantidad1 == cantidad2) {
-                        System.out.print(", " + producto2 + " - Kilos Vendidos: " + cantidad2);
+                        System.out.print(", " + producto2 + " - Kilogramos Vendidos: " + cantidad2);
                     } else {
                         rank++;
                         System.out.println();
-                        System.out.print(rank + ". " + producto2 + " - Kilos Vendidos: " + cantidad2);
+                        System.out.print(rank + ". " + producto2 + " - Kilogramos Vendidos: " + cantidad2);
                     }
 
                     if (cantidad2 == cantidad3) {
-                        System.out.print(", " + producto3 + " - Kilos Vendidos: " + cantidad3);
+                        System.out.print(", " + producto3 + " - Kilogramos Vendidos: " + cantidad3);
                     } else {
                         rank++;
                         System.out.println();
-                        System.out.print(rank + ". " + producto3 + " - Kilos Vendidos: " + cantidad3);
+                        System.out.print(rank + ". " + producto3 + " - Kilogramos Vendidos: " + cantidad3);
                     }
 
                     if (cantidad3 == cantidad4) {
-                        System.out.print(", " + producto4 + " - Kilos Vendidos: " + cantidad4);
+                        System.out.print(", " + producto4 + " - Kilogramos Vendidos: " + cantidad4);
                     } else {
                         rank++;
                         System.out.println();
-                        System.out.print(rank + ". " + producto4 + " - Kilos Vendidos: " + cantidad4);
+                        System.out.print(rank + ". " + producto4 + " - Kilogramos Vendidos: " + cantidad4);
                     }
 
                     // Asegura que el salto de línea finalice correctamente la última línea
                     System.out.println();
                     // no se mostrara esto porque la caja esta cerrada.
-                } else {
+                } else if (CajaAbierta.equals("cerrado")) {
                     System.out.println("\nCaja cerrada, por favor haga ventas y compras para poder ver los reportes correctamente.");
 
                 }
@@ -945,88 +989,69 @@ public class Umana_Roy_Proyecto1__Q3 {
             } else if (opcionMenu == 5) {
 
                 // condicional cuando la caja esta abierta.
-                if (cajaAbierta) {
-                    System.out.println("Usted a seleccionado cierre de caja.");
-
-                    System.out.println("\nTotal de Ganancia del dia: " + caja);
-                    System.out.println("Dinero deposito en el banco: " + Banco);
-                    System.out.println("Seguro que quiere cerrar la caja?  SI/NO");
-                    Cerrar_si_no = lea.next();
-
-                    while (!(Cerrar_si_no.equalsIgnoreCase("si") || Cerrar_si_no.equalsIgnoreCase("no"))) {
-                        System.out.println("Error: Ingrese una opcion valida.");
-                        Cerrar_si_no = lea.next();
-
-                    }
-
-                    if (Cerrar_si_no.equalsIgnoreCase("si")) {
-
-                        System.out.println("Cuanto de este efectivo quiere depositar en el Banco? (Maximo 60%): ");
-                        deposito = lea.nextDouble();
-
-                        // error por si el usuario ingresa el 0 o un numero menor.
-                        while (deposito <= 0) {
-                            System.out.println("No puedes ingresar un numero 0 o menor, favor ingresa de nuevo la cantidad que ingresara al banco: ");
-                            deposito = lea.nextDouble();
-                        }
-
-                        // si el deposito que se ingreso es mayor a la caja por el 60%
-                        // entonces saldra este mensaje.
-                        if (deposito > caja * 0.60) {
-                            System.out.println("No puedes depositar mas del 60% de la caja, vuelve a intentarlo ingresando a cierre de caja de nuevo. \n(Ojo aun compras y ventas esta abierto.)");
-                            continue; // este continue hace que despues de almacenar mas dinero de lo que tenemos en caja, no cierre la caja, para que el usuario vuelva a ingresar a cierre de caja y vuelva a ingresar de nuevo y monto factible.
-                        } else { // si no, el deposito se realizara.
-                            caja = caja - deposito;
-                            System.out.println("Deposito realizado, efectivo restante en caja: " + caja);
-                        }
-
-                        Banco += deposito; // se suma el dinero en la variable de banco, despues de haberlo ingresado desde la varible de deposito. 
-
-                        // la caja se cierra = a falso.
-                        cajaAbierta = false;
-                        primerInicio = false; // aqui se pone el primerInicio en falso, porque cuando se cierre la caja ya no se podra poner dinero en la caja.
-                        System.out.println("Caja Cerrada.");
-                        System.out.println("Todos los productos se han reiniciado a cero, si quiere volver a comenzar, dele 'abrir caja'.");
-
-                        // aqui se llaman de vuelta a todas la variables inicializadas en cero
-                        // para que todos los contadores se reinicien y vuelvan a cero.
-                        subTotalVenta = 0;
-                        PrecioProducto = 0;
-                        Descuento = 0;
-                        numeroVentas = 0;
-                        numeroCompras = 0;
-                        VolumenTotalCompra = 0;
-                        VolumenTotalVenta = 0;
-                        ValorMedioVentas = 0;
-                        ValorMedioCompras = 0;
-                        MayorGananciaVenta = 0;
-                        MayorGastoCompra = 0;
-                        InventarioAzucar = 0;
-                        InventarioAvena = 0;
-                        InventarioTrigo = 0;
-                        InventarioMaiz = 0;
-                        maxKilos = 0;
-                        productoEstrella = "";
-                        cantidad1 = 0;
-                        cantidad2 = 0;
-                        cantidad3 = 0;
-                        cantidad4 = 0;
-                        TotalCompra = 0;
-                        CantidadKiloCompraTotal = 0;
-                        CantidadKiloVentaTotal = 0;
-                        CantidadVendidaAzucar = 0;
-                        CantidadVendidaAvena = 0;
-                        CantidadVendidaTrigo = 0;
-                        CantidadVendidaMaiz = 0;
-
-                    } else if (Cerrar_si_no.equalsIgnoreCase("no")) {
-                        continue;
-                    }
-
-                } else {
-                    // este mensaje saldra cuando la caja esta cerrada.
+                if (CajaAbierta.equals("cerrado")) {
                     System.out.println("\nError: no puede cerrar la caja, si la caja ya esta cerrada.");
+                    continue;
                 }
+
+                System.out.println("Usted a seleccionado cierre de caja.");
+                CajaAbierta = "cerrado";
+                if (monto > 0) {
+                    System.out.println("\nTotal de Ganancia del dia: " + String.format("%.2f", caja));
+                    System.out.println("Dinero deposito en el banco: " + String.format("%.2f", Banco));
+
+                }
+
+                System.out.println("Cuanto de este efectivo quiere depositar en el Banco? (Maximo 60%): \n(Maximo que puede ingresar: " + ((caja * 60) / 100) + ")");
+                deposito = lea.nextDouble();
+
+                // error por si el usuario ingresa el 0 o un numero menor.
+                while (deposito <= 0) {
+                    System.out.println("No puedes ingresar un numero 0 o menor, favor ingresa de nuevo la cantidad que ingresara al banco: ");
+                    deposito = lea.nextDouble();
+                }
+
+                // si el deposito que se ingreso es mayor a la caja por el 60%
+                // entonces saldra este mensaje.
+                if (deposito > caja * 0.60) {
+                    System.out.println("No puedes depositar mas del 60% de la caja, vuelve a intentarlo ingresando a cierre de caja de nuevo. \n(Ojo aun compras y ventas esta abierto.)");
+                    continue; // este continue hace que despues de almacenar mas dinero de lo que tenemos en caja, no cierre la caja, para que el usuario vuelva a ingresar a cierre de caja y vuelva a ingresar de nuevo y monto factible.
+                } else { // si no, el deposito se realizara.
+                    caja = caja - deposito;
+                    caja = Math.round(caja * 100.0) / 100.0;
+                    System.out.println("Deposito realizado, efectivo restante en caja: " + caja);
+                }
+
+                Banco += deposito; // se suma el dinero en la variable de banco, despues de haberlo ingresado desde la varible de deposito. 
+
+                System.out.println("Caja Cerrada.");
+                System.out.println("Todos los productos se han reiniciado a cero, si quiere volver a comenzar, dele 'abrir caja'.");
+
+                // aqui se llaman de vuelta a todas la variables inicializadas en cero
+                // para que todos los contadores se reinicien y vuelvan a cero.
+                Dia++;
+                subTotalVenta = 0;
+                PrecioProducto = 0;
+                Descuento = 0;
+                numeroVentas = 0;
+                numeroCompras = 0;
+                VolumenTotalCompra = 0;
+                VolumenTotalVenta = 0;
+                ValorMedioVentas = 0;
+                ValorMedioCompras = 0;
+                MayorGananciaVenta = 0;
+                MayorGastoCompra = 0;
+                cantidad1 = 0;
+                cantidad2 = 0;
+                cantidad3 = 0;
+                cantidad4 = 0;
+                TotalCompra = 0;
+                CantidadKiloVentaTotal = 0;
+                CantidadVendidaAzucar = 0;
+                CantidadVendidaAvena = 0;
+                CantidadVendidaTrigo = 0;
+                CantidadVendidaMaiz = 0;
+                productoEstrella = "";
 
 // -------------------6. SALIDA, DESPEDIDA-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

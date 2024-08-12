@@ -566,11 +566,15 @@ public class Umana_Roy_Proyecto1__Q3 {
                     // condicionales para el productoestrella y el ranking.
                     // Ordenar producto 1 y 2
                     if (cantidad1 < cantidad2) {
-                        // Intercambiar producto 1 y 2
+                        // Si la cantidad del producto 1 es menor que la cantidad del producto 2,
+                        // se intercambian los nombres de los productos y las cantidades.
+                        
+                        // Intercambiar los nombres de producto1 y producto2
                         tempProducto = producto1;
                         producto1 = producto2;
                         producto2 = tempProducto;
 
+                        // Intercambiar las cantidades de cantidad1 y cantidad2
                         tempCantidad = cantidad1;
                         cantidad1 = cantidad2;
                         cantidad2 = tempCantidad;
@@ -578,7 +582,6 @@ public class Umana_Roy_Proyecto1__Q3 {
 
                     // Ordenar producto 2 y 3
                     if (cantidad2 < cantidad3) {
-                        // Intercambiar producto 2 y 3
                         tempProducto = producto2;
                         producto2 = producto3;
                         producto3 = tempProducto;
@@ -600,7 +603,7 @@ public class Umana_Roy_Proyecto1__Q3 {
                         cantidad4 = tempCantidad;
                     }
 
-                    // Repetir para garantizar el orden correcto
+                    // se Repete para garantizar el orden correcto
                     if (cantidad1 < cantidad2) {
                         tempProducto = producto1;
                         producto1 = producto2;

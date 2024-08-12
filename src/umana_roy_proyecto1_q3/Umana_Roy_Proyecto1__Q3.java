@@ -1018,14 +1018,14 @@ public class Umana_Roy_Proyecto1__Q3 {
 
                 // si el deposito que se ingreso es mayor a la caja por el 60%
                 // entonces saldra este mensaje.
-                if (deposito > caja * 0.60) {
+                while (deposito > caja * 0.60) {
                     System.out.println("No puedes depositar mas del 60% de la caja, vuelve a intentarlo ingresando a cierre de caja de nuevo. \n(Ojo aun compras y ventas esta abierto.)");
-                    continue; // este continue hace que despues de almacenar mas dinero de lo que tenemos en caja, no cierre la caja, para que el usuario vuelva a ingresar a cierre de caja y vuelva a ingresar de nuevo y monto factible.
-                } else { // si no, el deposito se realizara.
-                    caja = caja - deposito;
-                    caja = Math.round(caja * 100.0) / 100.0;
-                    System.out.println("Deposito realizado, efectivo restante en caja: " + caja);
+                    System.out.println("Por favor ingrese un nuevo monto: ");
+                    deposito = lea.nextDouble();
                 }
+                caja = caja - deposito;
+                caja = Math.round(caja * 100.0) / 100.0;
+                System.out.println("Deposito realizado, efectivo restante en caja: " + caja);
 
                 Banco += deposito; // se suma el dinero en la variable de banco, despues de haberlo ingresado desde la varible de deposito. 
 

@@ -6,7 +6,7 @@ package umana_roy_proyecto1_q3;
 
 //LIBRERIA SCANNER    
 import java.util.Scanner;
-
+import java.util.InputMismatchException;
 /**
  *
  * @author royum
@@ -137,9 +137,13 @@ public class Umana_Roy_Proyecto1__Q3 {
             System.out.println("|5. Cierre de caja        |");
             System.out.println("|6. Salir del sistema     |");
             System.out.println("---------------------------");
+            try{
             System.out.println("Ingrese una opcion: ");
             opcionMenu = lea.nextInt();
-
+            }catch(InputMismatchException e){
+                System.out.println("Ingrese una opcion valida.");
+                lea.next();
+            }
             // si eliges una opcion que no este en el menu saldra un error.
             if (opcionMenu < 1 || opcionMenu > 6) {
                 System.out.println("\n");
@@ -161,8 +165,13 @@ public class Umana_Roy_Proyecto1__Q3 {
                     // y se ingrese la cantidad de efectivo a guardar.
                     System.out.println("-----------------------------------------------------------------------------------");
                     System.out.println("Caja: Lps. " + String.format("%.2f", caja));
+                    try{
                     System.out.println("Ingrese la cantidad de efectivo para guardar en la caja: ");
                     monto = lea.nextDouble();
+                    }catch(InputMismatchException e){
+                        System.out.println("Opcion invalida intente de nuevo: ");
+                        monto = lea.nextInt();
+                    }
 
                     // bucle por si el usuario mete un numero negativo o un numero 0 en el efectivo.
                     while (monto <= 0) {

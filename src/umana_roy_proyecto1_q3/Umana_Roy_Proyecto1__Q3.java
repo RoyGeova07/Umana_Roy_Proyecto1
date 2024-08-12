@@ -56,8 +56,7 @@ public class Umana_Roy_Proyecto1__Q3 {
         double DiferenciaCompra;
         int ConfirmacionSeccionCompras; // sirve para preguntarle al usuario si de verdad quiere comprar el producto
         int Dia = 1;
-        String NombreMayorVenta = "";
-        double MayorVentaKilogramos = 0;
+        
 
         // variable como espacio en memoria para el numero de ventas.
         int numeroVentas = 0;
@@ -554,9 +553,6 @@ public class Umana_Roy_Proyecto1__Q3 {
                     // entonces MayorGananciaventa es igual al TotalaPagar.
                     if (TotalaPagar > MayorGananciaVenta) {
                         MayorGananciaVenta = TotalaPagar;
-                        MayorVentaKilogramos = CantidadKiloVenta;
-                        NombreMayorVenta = NombreProductoVenta;
-
                     }
                     // el valor medio de ventas es igual Volumenmedioventas entre el numero de ventas que se hizo.
                     ValorMedioVentas = VolumenTotalVenta / numeroVentas;

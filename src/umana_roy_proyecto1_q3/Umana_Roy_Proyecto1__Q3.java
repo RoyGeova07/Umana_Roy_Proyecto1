@@ -541,7 +541,7 @@ public class Umana_Roy_Proyecto1__Q3 {
                         if (InventarioAzucar == 0 && InventarioAvena == 0 && InventarioTrigo == 0 && InventarioMaiz == 0) {
                             System.out.println("\nNo hay mas productos disponibles para vender.");
 
-                            break; // Salir del bucle de ventas y regresar al menú principal
+                            break; // Salir del bucle de ventas y regresar al menu principal
                         }
 
                     }

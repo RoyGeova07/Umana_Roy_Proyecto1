@@ -983,7 +983,7 @@ public class Umana_Roy_Proyecto1__Q3 {
                         System.out.print(rank + ". " + producto4 + " - Kilogramos Vendidos: " + cantidad4);
                     }
 
-                    // Asegura que el salto de línea finalice correctamente la última línea
+                    // Asegura que el salto de linea finalice correctamente la ultima linea
                     System.out.println();
                     // no se mostrara esto porque la caja esta cerrada.
                 } else if (CajaAbierta.equals("cerrado")) {
